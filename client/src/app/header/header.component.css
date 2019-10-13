@@ -1,7 +1,40 @@
 .header {
-    background : #ffffff;
+    background : #f2b1d8;
+}
+.sticky {
+    position:fixed;
+    top:0;
+    width:100%;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition:all 0.5s ease;
+    z-index:5;
 }
 .login {
     margin:0px 10px;
+    border:1px solid white;
+    background-color: white;
+    color:#FF5DC9;
+    padding:6px 12px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.signup {
+    margin:0px 10px;
+    border:1px solid white;
+    background-color: white;
+    color:#FF5DC9;
+    padding:6px 12px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.login:focus {
+    outline:none;
+}
+.signup:focus {
+    outline:none;
+}
+.mouseover:hover {
+    background-color:transparent;
+    color:white;
+    transition:all 0.5s ease-in-out;
 }
