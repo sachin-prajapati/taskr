@@ -1,13 +1,12 @@
 .section1 {
     height:89.5vh;
     width:100%;
-    /* border:1px solid black; */
-    background : url(../../assets/images/start-background-1.svg);
-    background-size:100% 100%;
-    background-repeat:no-repeat;
-    /* animation: section1img 5s alternate infinite; */
 }
-@keyframes section1img {
-    0% {background : url(../../assets/images/start-background-1.svg)};
-    50% {background : url(../../assets/images/start-background-2.svg)};
+/* .section1 img {
+    height:100%;
+    width:100%;
+} */
+.section2 {
+    height:100vh;
+    width:100%;
 }

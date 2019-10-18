@@ -1,5 +1,7 @@
 .header {
-    background : #f2b1d8;
+    background : #2D283E;
+    position:fixed;
+    width:100%;
 }
 .sticky {
     position:fixed;
@@ -11,18 +13,18 @@
 }
 .login {
     margin:0px 10px;
-    border:1px solid white;
-    background-color: white;
-    color:#FF5DC9;
+    border:1px solid #D1D7E0;
+    background-color: #D1D7E0;
+    color:#2D283E;
     padding:6px 12px;
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 .signup {
     margin:0px 10px;
-    border:1px solid white;
-    background-color: white;
-    color:#FF5DC9;
+    border:1px solid #D1D7E0;
+    background-color: #D1D7E0;
+    color:#2D283E;
     padding:6px 12px;
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -35,6 +37,6 @@
 }
 .mouseover:hover {
     background-color:transparent;
-    color:white;
+    color:#D1D7E0;
     transition:all 0.5s ease-in-out;
 }

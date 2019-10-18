@@ -2,9 +2,8 @@
     @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap');
 </style>
 <div class="container">
-    <hr style="opacity:0;">
     <div class="row">
-        <div class="col-md-5"></div>
+        <div class="col-md-5 set"><img src="assets/images/signup.svg" alt="signup"></div>
         <div class="col-md-7 box">
             <div class="head">
                 <h4><b>LET'S CREATE YOUR ACCOUNT</b></h4>
@@ -26,6 +25,22 @@
                     class="help-block"
                     *ngIf="!name.valid && name.touched"
                     style="color:red;">Enter a valid Name</span>
+                </div>
+                <div class="form-group">
+                    <label for="username">UserName</label>
+                    <input
+                    placeholder = "UserName" 
+                    type="uname" 
+                    id="uname" 
+                    name="uname" 
+                    ngModel 
+                    class="form-control"
+                    required 
+                    #name="ngModel">
+                    <span 
+                    class="help-block"
+                    *ngIf="!uname.valid && uname.touched"
+                    style="color:red;">Enter a valid UserName</span>
                 </div>
                 <div class="form-group">
                     <label for="email">E-Mail</label>
@@ -86,7 +101,7 @@
                 </div>
                 <button type="submit" class="btn btn-success mybutton"  [disabled]="!f.valid">SignUp</button>
             </form>
-            <p class="foot">Already on EventSity ? <a routerLink='/login'>LogIn</a></p>
+            <p class="foot">Already on TaskR ? <a routerLink='/login'>LogIn</a></p>
         </div>
     </div>
     <hr style="opacity:0;">

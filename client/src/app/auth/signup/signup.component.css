@@ -26,18 +26,21 @@ input.ng-invalid.ng-touched {
     text-align:center;
     padding : 10px;
 }
+.set {
+    position:relative;
+    top:8rem;
+}
+.set img {
+    height:50rem;
+    width:20rem;
+}
 .box {
+    position:relative;
+    top:8rem;
     font-family: 'Montserrat', sans-serif;
     width:35%;
-    margin-left:15rem;
-    padding: 20px 35px ;
-    margin-top:20px;
+    padding: 20px 35px;
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
-}
-.man {
-    margin-top:40px;
-    height:45rem;
-    width:40rem;
 }
 .mybutton:focus {
     outline:none;
