@@ -1,6 +1,26 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Roboto&display=swap');
+</style>
 <section (scroll)="onWindowScroll($event);">
-    <div class="section1">
-        <img src="assets/images/home.svg" alt="TaskR">
+    <div class="container-fluid section1">
+        <div class="row">
+            <div class="col-lg-6 text">
+                <img src="assets/images/wheel.png" class="rotate" alt="wheel">
+                <img src="assets/images/wheel2.png" class="rotate" alt="wheel">
+                <h2>
+                    Task<span style="color:#3FB0AC;">R</span>  
+                    <span style="color:black;"> lets you work more collaboratively and get more done.</span>
+                </h2>
+                <h3>
+                    Trello’s boards, lists, and cards enable you to organize and prioritize your projects in a fun,
+                    flexible, and rewarding way.
+                </h3>
+                <div class="box"></div>
+            </div>
+            <div class="col-lg-6 vector">
+                <img src="assets/images/home.png" alt="TaskR">
+            </div>
+        </div>
     </div>
     <div class="section2">
         <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>

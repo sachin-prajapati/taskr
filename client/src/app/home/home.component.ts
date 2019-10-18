@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
               value: 200,
           },
           color: {
-              value: '#000000',
+              value: '#173E43',
           },
           shape: {
               type: 'triangle',
@@ -41,16 +41,16 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(e) {
-     if (window.pageYOffset > 50) {
-       let element = document.getElementById('navigationbar');
-       element.classList.add('sticky');
-     } else {
-      let element = document.getElementById('navigationbar');
-        element.classList.remove('sticky'); 
-     }
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll(e) {
+  //    if (window.pageYOffset > 50) {
+  //      let element = document.getElementById('navigationbar');
+  //      element.classList.add('sticky');
+  //    } else {
+  //     let element = document.getElementById('navigationbar');
+  //       element.classList.remove('sticky'); 
+  //    }
+  // }
 
 }
 
