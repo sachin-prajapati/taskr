@@ -28,11 +28,20 @@
 }
 .box {
     position: relative;
-    top:16rem;
+    top:11rem;
+    left:8rem;
     height:15px;
     width:45px;
     background-color:#3FB0AC;
-    animation:move 4s alternate infinite;
+    animation:move 1s alternate infinite;
+}
+.box1 {
+    position: relative;
+    top:10rem;
+    height:15px;
+    width:45px;
+    background-color:#3FB0AC;
+    animation:movef 1s alternate infinite;
 }
 .rotate {
     position:relative;
@@ -40,8 +49,67 @@
     animation:rotate 5s linear infinite;
 }
 .section2 {
-    height:100vh;
+    height:89.5vh;
     width:100%;
+    margin-top:5rem;
+    padding-top:2rem;
+    text-align: center;
+    background-color:#FAE596;
+    font-family: 'Poppins', sans-serif;
+    color:#173E43;
+    background-size: cover;
+}
+.section3 {
+    /* position:absolute; */
+    margin-top:3rem;
+    height:89.5vh;
+    width:100%;
+}
+.work {
+    position:absolute;
+    left:3rem;
+    height:30rem;
+    width:30rem;
+    background:url(../../assets/images/homesec3parts.svg);
+    background-repeat: no-repeat;
+    animation:movevertical 1s alternate infinite;
+}
+.contentbox {
+    font-family: 'Montserrat', sans-serif;
+    margin-top:3rem;
+    height:30rem;
+    padding:2rem;
+    background-color:#FAE596;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);
+}
+.section4 {
+    height:89vh;
+    width:100%;
+}
+.part1  {
+    position:absolute;
+    height:30rem;
+    width:30rem;
+    background-repeat: no-repeat;
+    background:url(../../assets/images/homesec4partleft.svg);
+    animation:moveright 1s alternate infinite;
+}
+.part2  {
+    position:absolute;
+    left:5rem;
+    height:30rem;
+    width:30rem;
+    background-repeat: no-repeat;
+    background:url(../../assets/images/homesec4partright.svg);
+    animation:moveleft 1s alternate infinite;
+}
+.contentbox2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top:8rem;
+    height:15rem;
+    padding:2rem;
+    background-color:#FAE596;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);
 }
 @keyframes rotate {
     0%{transform:rotate(0deg);}
@@ -49,5 +117,21 @@
 }
 @keyframes move {
     0%{transform:translateX(0px);}
-    100%{transform:translateX(25rem);}
+    100%{transform:translateX(-4rem);}
+}
+@keyframes movef {
+    0%{transform:translateX(0rem);}
+    100%{transform:translateX(2.5rem);}
+}
+@keyframes movevertical {
+    0%{transform:translateY(0rem);}
+    100%{transform:translateY(1.5rem);}
+}
+@keyframes moveright {
+    0%{transform:translateX(0rem);}
+    100%{transform:translateX(1rem);}
+}
+@keyframes moveleft {
+    0%{transform:translateX(0rem);}
+    100%{transform:translateX(-1rem);}
 }
