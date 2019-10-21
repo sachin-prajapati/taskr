@@ -3,11 +3,13 @@ input.ng-invalid.ng-touched {
 }
 input {
     border-left: 3px solid #3FB0AC;
+    width:25rem;
 }
 .box {
     position:relative;
     top:10rem;
     padding:10px 100px;
+    width:25rem;
 }
 .head {
     text-align : center;
@@ -39,8 +41,12 @@ input {
     width : 30em;
 }
 .set {
+    height:89.5vh;
+    width:100%;
     position:relative;
     top:10rem;
+    background:url(../../../assets/images/login.svg);
+    background-size:cover;
 }
 .man {
     margin-left : 50px;
