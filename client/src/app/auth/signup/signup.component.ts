@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerService } from 'src/app/services/server.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,10 @@ import { ServerService } from 'src/app/services/server.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private serverservice: ServerService,) { }
+  uname:any;
+
+  constructor(private serverservice: ServerService,
+              private router: Router,) { }
 
   ngOnInit() {
   }
@@ -22,6 +26,9 @@ export class SignupComponent implements OnInit {
     .subscribe(
       (response) => {
         console.log(response);
+        this.uname=response;
+        console.log(this.uname.userName);
+        this.router.navigate(['/verify',this.uname.userName]);
       },
       (error: HttpErrorResponse) =>{
         console.log(error);

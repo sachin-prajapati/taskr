@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.myStyle = {
       'position': 'fixed',
-      // 'width': '100%',
-      // 'height': '100vh',
+      'width': '100%',
+      'height': '100vh',
       'z-index': -1,
       'top': 0,
       'left': 0,

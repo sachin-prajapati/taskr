@@ -1,58 +1,50 @@
 .section1 {
-    height:89.5vh;
+    height:auto;
     width:100%;
 }
 .vector img {
-    position:relative;
-    top:6rem;
+    margin-top:6rem;
     width:35rem;
 }
 .text {
-    position:relative;
-    top:6rem;
+    margin-top:6rem;
     padding:50px;
 }
 .text h2 {
-    position:relative;
-    top:60px;
+    margin-top:60px;
     font-family: 'Montserrat', sans-serif;
     font-weight:600;
     color:#173E43;
 }
 .text h3 {
-    position:relative;
-    top:90px;
+    margin-top:90px;
     font-family: 'Montserrat', sans-serif;
     font-weight:600;
     color:#173E43;
 }
 .box {
-    position: relative;
-    top:11rem;
-    left:8rem;
+    margin-top:2rem;
+    margin-left:8rem;
     height:15px;
     width:45px;
     background-color:#3FB0AC;
     animation:move 1s alternate infinite;
 }
 .box1 {
-    position: relative;
-    top:10rem;
+    margin-top:2.5rem;
     height:15px;
     width:45px;
     background-color:#3FB0AC;
     animation:movef 1s alternate infinite;
 }
 .rotate {
-    position:relative;
     width:6rem;
     animation:rotate 5s linear infinite;
 }
 .section2 {
-    height:89.5vh;
-    width:100%;
+    height:auto;
     margin-top:5rem;
-    padding-top:2rem;
+    padding:2rem;
     text-align: center;
     background-color:#FAE596;
     font-family: 'Poppins', sans-serif;
@@ -62,51 +54,25 @@
 .section3 {
     /* position:absolute; */
     margin-top:3rem;
-    height:89.5vh;
+    height:auto;
     width:100%;
-}
-.work {
-    position:absolute;
-    left:3rem;
-    height:30rem;
-    width:30rem;
-    background:url(../../assets/images/homesec3parts.svg);
-    background-repeat: no-repeat;
-    animation:movevertical 1s alternate infinite;
 }
 .contentbox {
     font-family: 'Montserrat', sans-serif;
     margin-top:3rem;
-    height:30rem;
+    height:auto;
     padding:2rem;
     background-color:#FAE596;
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);
 }
 .section4 {
-    height:89vh;
+    height:auto;
     width:100%;
-}
-.part1  {
-    position:absolute;
-    height:30rem;
-    width:30rem;
-    background-repeat: no-repeat;
-    background:url(../../assets/images/homesec4partleft.svg);
-    animation:moveright 1s alternate infinite;
-}
-.part2  {
-    position:absolute;
-    left:5rem;
-    height:30rem;
-    width:30rem;
-    background-repeat: no-repeat;
-    background:url(../../assets/images/homesec4partright.svg);
-    animation:moveleft 1s alternate infinite;
 }
 .contentbox2 {
     font-family: 'Montserrat', sans-serif;
     margin-top:8rem;
-    height:15rem;
+    height:auto;
     padding:2rem;
     background-color:#FAE596;
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);

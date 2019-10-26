@@ -5,10 +5,15 @@ input {
     border-left: 3px solid #3FB0AC;
     width:25rem;
 }
+.all {
+    background:url(../../../assets/images/login.svg);
+    background-size:cover;
+}
 .box {
-    position:relative;
-    top:10rem;
-    padding:10px 100px;
+    margin-top:10rem;
+    border-radius: 10px;
+    border-bottom: 5px solid #173E43;
+    padding:10px 50px;
     width:25rem;
 }
 .head {
@@ -19,18 +24,17 @@ input {
     font-family: 'Fira Sans', sans-serif;
 }
 .mybutton {
-    position:relative;
-    left : 8em;
+    margin-left:10rem;
     padding : 6px 20px;
-    border : 2px solid #4957FF;
+    border : 2px solid #3FB0AC;
     background-color : transparent;
-    color : #4957FF;
+    color : #3FB0AC;
     border-radius : 10px;
 }
 .mybutton:hover {
-    background-color : #4957FF;
+    background-color : #3FB0AC;
     color : white;
-    border : 2px solid #4957FF; 
+    border : 2px solid #3FB0AC; 
     transition: all 0.5s ease-in-out;
 }
 .foot {
@@ -39,14 +43,6 @@ input {
 }
 .size img{
     width : 30em;
-}
-.set {
-    height:89.5vh;
-    width:100%;
-    position:relative;
-    top:10rem;
-    background:url(../../../assets/images/login.svg);
-    background-size:cover;
 }
 .man {
     margin-left : 50px;
