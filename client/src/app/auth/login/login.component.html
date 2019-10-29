@@ -1,13 +1,25 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Ubuntu&display=swap');
 </style>
-<div class="container-fluid all">
+<div *ngIf=load>
+    <div class="loader">
+        <div class="loader-circle">
+            <div class="loader-circle">
+                <div class="loader-circle">
+                    <div class="loader-circle">
+                        <div class="loader-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf=!load class="container-fluid all">
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 col-sm-12 box set">
             <div class="head">
-                <h4><b>HAPPY TO SEE YOU BACK!</b></h4>
-                <p>Let’s see what's the status of your work</p>
+                <h4><b>LogIn</b></h4>
             </div>
             <form (ngSubmit)="onLogin(f)" #f="ngForm">
                 <div class="form-group">

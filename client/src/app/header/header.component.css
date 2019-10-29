@@ -17,20 +17,7 @@
     border-bottom-right-radius: 10px;
     box-shadow: 0 0 8px 0 rgba(17,22,26,.16), 0 4px 8px 0 rgba(17,22,26,.08), 0 8px 16px 0 rgba(17,22,26,.08);
 }
-.signup {
-    margin:0px 10px;
-    border:2px solid #173E43;
-    background-color: transparent;
-    color:#173E43;
-    padding:6px 12px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    box-shadow: 0 0 8px 0 rgba(17,22,26,.16), 0 4px 8px 0 rgba(17,22,26,.08), 0 8px 16px 0 rgba(17,22,26,.08);
-}
 .login:focus {
-    outline:none;
-}
-.signup:focus {
     outline:none;
 }
 .logo:hover {

@@ -1,9 +1,13 @@
 input.ng-invalid.ng-touched {
     border : 2px solid red;
 }
+input {
+    border-left: 3px solid #3FB0AC;
+    width:25rem;
+}
 .head {
     text-align : center;
-    color : #9E36DA;
+    color : #173E43;
 }
 .head h4 {
     font-family: 'Lato', sans-serif;
@@ -26,20 +30,10 @@ input.ng-invalid.ng-touched {
     text-align:center;
     padding : 10px;
 }
-.set {
-    position:relative;
-    top:8rem;
-}
-.set img {
-    height:50rem;
-    width:20rem;
-}
 .box {
-    position:relative;
-    top:8rem;
+    margin-top:8rem;
     font-family: 'Montserrat', sans-serif;
-    width:35%;
-    padding: 20px 35px;
+    height:auto;
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
 }
 .mybutton:focus {

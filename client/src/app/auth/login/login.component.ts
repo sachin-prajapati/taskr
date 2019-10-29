@@ -14,14 +14,17 @@ export class LoginComponent implements OnInit {
 
   tk:any;
   name:any;
+  load=false;
 
   constructor(private serverservice : ServerService,
               private route: Router,) { }
 
   ngOnInit() {
+    this.load=false;
   }
 
   onLogin(form : NgForm) {
+    this.load=true;
     console.log(JSON.stringify(form.value));
     const value = form.value;
     this.serverservice.logInUser(value.email,value.password)
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
         // console.log(this.name.name);
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.tk.userName);
+        this.load=false;
       },
       (error: HttpErrorResponse) =>{
         console.log(error)
@@ -41,6 +45,7 @@ export class LoginComponent implements OnInit {
         //   this.uid = error.error;
         //   // console.log(this.uid.userId);
         //   this.route.navigate(['/verify',this.uid.userId])
+        this.load=false;
         }
     );
   }

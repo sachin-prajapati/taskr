@@ -5,12 +5,32 @@ input {
     border-left: 3px solid #3FB0AC;
     width:25rem;
 }
+.loader {
+    width:200px;
+    height:200px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.loader-circle {
+    width:calc(100% - 0.000001px);
+    height:calc(100% - 0.000001px);
+    border:8px solid #173E43;
+    border-top:8px solid #3FB0AC;
+    border-radius:50%;
+    animation:rotate 5s linear infinite;
+}
+@keyframes rotate {
+    100%{transform:rotate(360deg);}
+}
 .all {
     background:url(../../../assets/images/login.svg);
     background-size:cover;
+    height:89.5vh;
 }
 .box {
-    margin-top:10rem;
+    margin-top:15rem;
     border-radius: 10px;
     border-bottom: 5px solid #173E43;
     padding:10px 50px;
@@ -40,21 +60,6 @@ input {
 .foot {
     text-align:center;
     padding : 10px;
-}
-.size img{
-    width : 30em;
-}
-.man {
-    margin-left : 50px;
-    margin-top:20px;
-    height : 35rem;
-    width : 35rem;
-}
-.man2 {
-    margin-left : 50px;
-    margin-top:20px;
-    height : 35rem;
-    width : 30rem;
 }
 .mybutton:focus {
     outline:none;
