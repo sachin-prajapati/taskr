@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VerificationComponent } from './verification/verification.component';
 import { ConfirmPasswordDirective } from './shared/confirm-password.directive';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConfirmPasswordDirective } from './shared/confirm-password.directive';
     SignupComponent,
     HomeComponent,
     VerificationComponent,
-    ConfirmPasswordDirective
+    ConfirmPasswordDirective,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

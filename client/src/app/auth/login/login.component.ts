@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ServerService } from 'src/app/services/server.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
@@ -17,10 +17,16 @@ export class LoginComponent implements OnInit {
   load=false;
 
   constructor(private serverservice : ServerService,
-              private route: Router,) { }
+              private router: Router,) { }
 
   ngOnInit() {
     this.load=false;
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
   onLogin(form : NgForm) {

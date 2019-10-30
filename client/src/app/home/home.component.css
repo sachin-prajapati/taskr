@@ -46,7 +46,7 @@
     margin-top:5rem;
     padding:2rem;
     text-align: center;
-    background-color:#FAE596;
+    background-color:#3FB0AC;
     font-family: 'Poppins', sans-serif;
     color:#173E43;
     background-size: cover;
@@ -62,7 +62,8 @@
     margin-top:3rem;
     height:auto;
     padding:2rem;
-    background-color:#FAE596;
+    /* background-color:#FAE596; */
+    background:linear-gradient(#3FB0AC,white);
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);
 }
 .section4 {
@@ -74,7 +75,8 @@
     margin-top:8rem;
     height:auto;
     padding:2rem;
-    background-color:#FAE596;
+    /* background-color:#FAE596; */
+    background:linear-gradient(#3FB0AC,white);
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,.1);
 }
 @keyframes rotate {
