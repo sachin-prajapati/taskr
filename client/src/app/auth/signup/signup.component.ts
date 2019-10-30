@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   uname:any;
+  load=false;
 
   constructor(private serverservice: ServerService,
               private router: Router,) { }
 
   ngOnInit() {
+    this.load=false;
   }
 
   onSignup(form : NgForm) {
@@ -33,7 +35,7 @@ export class SignupComponent implements OnInit {
       (error: HttpErrorResponse) =>{
         console.log(error);
       },
-      );
+    );
   }
 
 }

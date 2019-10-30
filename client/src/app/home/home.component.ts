@@ -29,13 +29,22 @@ export class HomeComponent implements OnInit {
     this.myParams = {
       particles: {
           number: {
-              value: 250,
+              value: 60,
           },
           color: {
               value: '#173E43',
           },
           shape: {
-              type: 'circle',
+              polygon: {
+                "nb_sides": 5
+              },
+          },
+          line_linked: {
+            "enable": true,
+            "distance": 150,
+            "color": "#173E43",
+            "opacity": 0.5,
+            "width": 2
           },
       }
     };

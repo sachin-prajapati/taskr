@@ -1,10 +1,24 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap');
 </style>
-<div class="container">
+<div *ngIf=load>
+    <div class="loader">
+        <div class="loader-circle">
+            <div class="loader-circle">
+                <div class="loader-circle">
+                    <div class="loader-circle">
+                        <div class="loader-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!load" class="container-fluid bg">
     <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-7 box">
+        <div class="col-md-6"></div>
+        <div class="col-md-4 col-sm-12">
+            <div class="box">
             <div class="head">
                 <h4><b>SignUp</b></h4>
             </div>
@@ -102,5 +116,6 @@
             </form>
             <p class="foot">Already on TaskR ? <a routerLink='/login'>LogIn</a></p>
         </div>
+    </div>
     </div>
 </div>

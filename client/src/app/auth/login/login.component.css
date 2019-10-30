@@ -27,7 +27,7 @@ input {
 .all {
     background:url(../../../assets/images/login.svg);
     background-size:cover;
-    height:89.5vh;
+    height:100vh;
 }
 .box {
     margin-top:15rem;
