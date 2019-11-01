@@ -5,3 +5,6 @@
 .content {
     color:#173E43;
 }
+.mybtn:focus {
+    outline:none;
+}

@@ -25,11 +25,18 @@ export class ServerService {
     JSON.stringify({email,password}),
     {headers: headers});
   }
+
   verifyUser(otp:string, name:any) {
     console.log(name);
     const headers = new HttpHeaders({'Content-Type':'application/json'})
     return this.http.post(this.rootUrl+'/auth/verifyEmail/'+name,
     JSON.stringify({otp}),
+    {headers: headers});
+  }
+
+  resendOtp(name:any) {
+    const headers = new HttpHeaders({'Content-Type':'application/json'})
+    return this.http.post(this.rootUrl+'/auth/resend/'+name,
     {headers: headers});
   }
 

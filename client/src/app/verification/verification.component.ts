@@ -9,7 +9,7 @@ import { ServerService } from '../services/server.service';
   styleUrls: ['./verification.component.css']
 })
 export class VerificationComponent implements OnInit {
-
+  resend=false;
   name:any;
   tk:any;
 
@@ -19,6 +19,26 @@ export class VerificationComponent implements OnInit {
 
   ngOnInit() {
     this.name = this.route.snapshot.params.name;
+
+    setTimeout(() => {
+      this.resend=true;
+    }, 120000);
+  }
+
+  onResend() {
+    this.resend = false;
+    setTimeout(() => {
+      this.resend = true;
+    }, 120000);
+    // this.serverservice.resendOtp(this.name)
+    // .subscribe(
+    //   (response) =>{
+    //      console.log(response);
+    //     },
+    //   (error) =>{ 
+    //     console.log(error);
+    //   },
+    // );
   }
 
   Verify(form : NgForm) {
