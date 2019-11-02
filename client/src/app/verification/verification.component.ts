@@ -12,6 +12,8 @@ export class VerificationComponent implements OnInit {
   resend=false;
   name:any;
   tk:any;
+  seconds:number=59;
+  minute:number=1;
 
   constructor(private serverservice: ServerService,
               private route: ActivatedRoute,
@@ -23,9 +25,30 @@ export class VerificationComponent implements OnInit {
     setTimeout(() => {
       this.resend=true;
     }, 120000);
+
+    setInterval(()=>{
+      if(this.seconds>0) {
+        this.seconds--;
+      }
+      else {
+        this.minute--;
+        this.seconds=59;
+      }
+    },1000);
   }
 
   onResend() {
+    this.seconds=60;
+    this.minute=1;
+    setInterval(()=>{
+      if(this.seconds>0) {
+        this.seconds--;
+      }
+      else {
+        this.minute--;
+        this.seconds=60;
+      }
+    },1000000);
     this.resend = false;
     setTimeout(() => {
       this.resend = true;
