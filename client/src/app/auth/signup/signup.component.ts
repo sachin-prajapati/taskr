@@ -28,18 +28,21 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form : NgForm) {
+    this.load=true;
     console.log(JSON.stringify(form.value));
     const value = form.value;
     this.serverservice.signUpUser(value.fullName,value.userName,value.email,value.password,value.confirmPassword)
     .subscribe(
       (response) => {
-        console.log(response);
         this.uname=response;
+        console.log(response);
         console.log(this.uname.userName);
         this.router.navigate(['/verify',this.uname.userName]);
+        this.load=false;
       },
       (error: HttpErrorResponse) =>{
         console.log(error);
+        this.load=false;
       },
     );
   }

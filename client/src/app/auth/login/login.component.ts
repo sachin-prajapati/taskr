@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.tk.userName);
         this.load=false;
+        this.router.navigate['/user'];
       },
       (error: HttpErrorResponse) =>{
         console.log(error)
