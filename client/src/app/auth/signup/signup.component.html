@@ -16,8 +16,7 @@
 </div>
 <div class="container-fluid bg">
     <div class="row">
-        <!-- <div class="col-md-6"></div> -->
-        <div class="col-md-4 col-sm-12">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="box">
             <div class="head">
                 <h4><b>SignUp</b></h4>
@@ -112,11 +111,11 @@
                     !confirmPassword.errors?.required" 
                     style="color:red;">Password doesn't match</span>
                 </div>
-                <button type="submit" class="btn btn-success mybutton"  [disabled]="!f.valid">SignUp</button>
+                <button type="submit" class="btn mybutton"  [disabled]="!f.valid">SignUp</button>
             </form>
             <p class="foot">Already on TaskR ? <a routerLink='/login'>LogIn</a></p>
         </div>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-lg-6"></div>
     </div>
 </div>

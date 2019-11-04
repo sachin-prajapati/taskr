@@ -17,48 +17,50 @@
 <div class="container-fluid all">
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4 col-sm-12 box set">
-            <div class="head">
-                <h4><b>LogIn</b></h4>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="box">
+                <div class="head">
+                    <h4><b>LogIn</b></h4>
+                </div>
+                <form (ngSubmit)="onLogin(f)" #f="ngForm">
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input 
+                        placeholder = "E-Mail"
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        ngModel
+                        class="form-control" 
+                        required
+                        #email="ngModel">
+                        <span 
+                        class="help-block"
+                        *ngIf="!email.valid && email.touched"
+                        style="color:red;">Enter a valid Email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                        placeholder = "Password"
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        ngModel 
+                        class="form-control" 
+                        required
+                        [minlength]="6"
+                        #password="ngModel">
+                        <span
+                        class="help-block"
+                        *ngIf="!password.valid && password.touched"
+                        style="color:red;">Enter minimum 6 character password</span>
+                    </div>
+                    <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">LogIn</button>
+                </form>
+                <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
             </div>
-            <form (ngSubmit)="onLogin(f)" #f="ngForm">
-                <div class="form-group">
-                    <label for="email">E-Mail</label>
-                    <input 
-                    placeholder = "E-Mail"
-                    type="email" 
-                    id="email" 
-                    name="email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                    ngModel
-                    class="form-control" 
-                    required
-                    #email="ngModel">
-                    <span 
-                    class="help-block"
-                    *ngIf="!email.valid && email.touched"
-                    style="color:red;">Enter a valid Email</span>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                    placeholder = "Password"
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    ngModel 
-                    class="form-control" 
-                    required
-                    [minlength]="6"
-                    #password="ngModel">
-                    <span
-                    class="help-block"
-                    *ngIf="!password.valid && password.touched"
-                    style="color:red;">Enter minimum 6 character password</span>
-                </div>
-                <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">LogIn</button>
-            </form>
-            <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
         </div>
     </div>
 </div>

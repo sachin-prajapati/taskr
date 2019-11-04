@@ -1,1 +1,60 @@
-<h2 style="margin-top:6rem;">Hello {{name}}</h2>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Roboto&display=swap');
+</style>
+<div class="container-fluid user">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 mx-auto">
+            <h2 style="color:#173E43"><b>Welcome</b></h2>
+            <h2 style="color:#3FB0AC"><b>{{name}}</b></h2>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12">
+            <h5><b>Boards</b></h5>
+            <div *ngFor="let boards of boards; index as id">
+            <a 
+            style="cursor : pointer;"
+            routerLinkActive="active"
+            class="list-group-item clearfix box" style="margin-bottom:20px;">
+                <div class="pull-left box1">
+                    <h4
+                    class="list-group-item-heading name"
+                    style="color:#DDDFD4">{{boards.bname}}</h4>
+                </div>
+            </a>
+            </div>
+            <!-- <a 
+            style="cursor : pointer;"
+            routerLinkActive="active"
+            class="list-group-item clearfix box" style="margin-bottom:20px;">
+                    <h4 
+                    class="list-group-item-heading name"
+                    style="color:#DDDFD4">Board Name</h4>
+            </a> -->
+            <div class="list-group-item clearfix add">
+                <div *ngIf=!wantaddboard class="name">
+                    <button (click)=showinput() class="btn btn-primary">Add Board</button>
+                </div>
+                <div *ngIf=wantaddboard>
+                    <form (ngSubmit)="addboard(f)" #f="ngForm">
+                        <div class="form-group">
+                            <label for="email">Board Name</label>
+                            <input 
+                            placeholder = "Board Name"
+                            type="text"
+                            id="bname" 
+                            name="bname"
+                            ngModel
+                            class="form-control" 
+                            required
+                            #bname="ngModel">
+                            <span 
+                            class="help-block"
+                            *ngIf="!bname.valid && bname.touched"
+                            style="color:red;">Enter a valid Email</span>
+                        </div>
+                        <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Board</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

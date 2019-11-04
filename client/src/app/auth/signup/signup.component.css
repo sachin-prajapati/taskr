@@ -33,10 +33,10 @@ input {
     100%{transform:rotate(360deg);}
 }
 .bg {
-    height:auto;
-    width:100%;
     background:url(../../../assets/images/signupvector.svg);
-    background-size:cover;
+    background-size:100% auto;
+    background-position:center center;
+    background-repeat:no-repeat;
     padding-bottom:2rem;
 }
 .head {

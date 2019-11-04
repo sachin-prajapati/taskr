@@ -14,6 +14,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { ConfirmPasswordDirective } from './shared/confirm-password.directive';
 import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './user/user.component';
+import { BoardsService } from './user/boards.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { UserComponent } from './user/user.component';
     ParticlesModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [BoardsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

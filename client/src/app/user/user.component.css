@@ -1,0 +1,28 @@
+input.ng-invalid.ng-touched {
+    border : 2px solid red;
+}
+.user{
+    font-family: 'Montserrat', sans-serif;
+    margin:6rem 0rem;
+}
+.box {
+    width:15rem;
+    height:12rem;
+    background:linear-gradient(#173E43,#3FB0AC);
+    border-radius:5px;
+}
+.box:hover {
+    transform:scale(1.03);
+    transition:all 0.4s ease-in-out;
+}
+.name {
+    text-align:center;
+    vertical-align: middle;
+    line-height: 10rem;
+}
+.add {
+    width:15rem;
+    height:12rem;
+    background:#DDDFD4;
+    border-radius:5px;
+}

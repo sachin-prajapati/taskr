@@ -34,15 +34,16 @@ input {
 }
 .all {
     background:url(../../../assets/images/login.svg);
-    background-size:cover;
-    height:100vh;
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    margin-bottom:10rem;
 }
 .box {
+    width:31rem;
     margin-top:15rem;
     border-radius: 10px;
     border-bottom: 5px solid #173E43;
     padding:10px 50px;
-    width:25rem;
 }
 .head {
     text-align : center;
