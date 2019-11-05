@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { VerificationComponent } from './verification/verification.component';
 import { UserComponent } from './user/user.component';
 import { AuthService } from './services/auth.service';
+import { BoardComponent } from './board/board.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path:'signup', component:SignupComponent },
   { path:'verify/:name', component:VerificationComponent },
   { path:'user', component:UserComponent, canActivate:[AuthGuard] },
+  { path:'board/:id', component:BoardComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({

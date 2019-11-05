@@ -40,18 +40,23 @@ export class LoginComponent implements OnInit {
         this.tk = response ;
         // this.name = response;
         // console.log(this.name.name);
+        if(this.tk.message != "Please verify your email address to login.") {
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.tk.userName);
+        this.router.navigate(['/user']);
+        }
+        if(this.tk.message === "Please verify your email address to login.") {
+          this.router.navigate(['/verify',this.tk.userName]);
+        }
         this.load=false;
-        this.router.navigate['/user'];
       },
       (error: HttpErrorResponse) =>{
         console.log(error)
         // this.errormsg = error.error.message;
-        // if(this.errormsg === "User is not verified") {
+        // if(this.errormsg === "Please verify your email address to login.") {
         //   this.uid = error.error;
-        //   // console.log(this.uid.userId);
-        //   this.route.navigate(['/verify',this.uid.userId])
+        //   // console.log(this.uid.userName);
+        //   this.router.navigate(['/verify',this.tk.userName])
         this.load=false;
         }
     );

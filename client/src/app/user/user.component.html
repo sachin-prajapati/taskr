@@ -11,24 +11,18 @@
             <h5><b>Boards</b></h5>
             <div *ngFor="let boards of boards; index as id">
             <a 
-            style="cursor : pointer;"
+            style="cursor : pointer;text-decoration:none;"
+            [routerLink]="['/board',id]"
+            (click)=chkid(id)
             routerLinkActive="active"
             class="list-group-item clearfix box" style="margin-bottom:20px;">
                 <div class="pull-left box1">
                     <h4
                     class="list-group-item-heading name"
-                    style="color:#DDDFD4">{{boards.bname}}</h4>
+                    style="color:#DDDFD4;">{{boards.bname}}</h4>
                 </div>
             </a>
             </div>
-            <!-- <a 
-            style="cursor : pointer;"
-            routerLinkActive="active"
-            class="list-group-item clearfix box" style="margin-bottom:20px;">
-                    <h4 
-                    class="list-group-item-heading name"
-                    style="color:#DDDFD4">Board Name</h4>
-            </a> -->
             <div class="list-group-item clearfix add">
                 <div *ngIf=!wantaddboard class="name">
                     <button (click)=showinput() class="btn btn-primary">Add Board</button>
@@ -49,7 +43,7 @@
                             <span 
                             class="help-block"
                             *ngIf="!bname.valid && bname.touched"
-                            style="color:red;">Enter a valid Email</span>
+                            style="color:red;">Enter a valid Board Name</span>
                         </div>
                         <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Board</button>
                     </form>

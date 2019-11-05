@@ -15,6 +15,7 @@ import { ConfirmPasswordDirective } from './shared/confirm-password.directive';
 import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './user/user.component';
 import { BoardsService } from './user/boards.service';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BoardsService } from './user/boards.service';
     VerificationComponent,
     ConfirmPasswordDirective,
     FooterComponent,
-    UserComponent
+    UserComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

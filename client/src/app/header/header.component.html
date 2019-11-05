@@ -1,15 +1,21 @@
 <nav id="navigationbar" class="navbar navbar-light sticky">
     <a routerLink='/' class="navbar-brand logo" style="text-decoration:none; color:#3FB0AC">
-        <!-- <img src="assets/images/T-logo.png" alt="TaskR" width="50px" height="50px" style="margin-right:10px;"> -->
+        <!-- <img src="assets/images/logo.png" alt="TaskR" width="50px" height="50px" style="margin-right:10px;"> -->
         <h1><b><span style="color:#173E43">Task</span>R</b></h1>
     </a>
     <div class="nav-item">
         <a routerLink='/login'><button *ngIf="!authservice.loggedIn()" class="login mouseover">LogIn</button></a>
         <a routerLink='/signup'><button *ngIf="!authservice.loggedIn()" class="login mouseover">SignUp</button></a>
+        <a routerLink='/user'>
+            <button 
+            *ngIf="authservice.loggedIn()" 
+            class="login mouseover">My Boards</button>
+        </a>
         <a routerLink='/'>
             <button 
             *ngIf="authservice.loggedIn()" 
             class="login mouseover"
-            (click)="authservice.logout()">Log Out</button></a>
+            (click)="authservice.logout()">Log Out</button>
+        </a>
     </div>
 </nav>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Boards } from './boards.model';
 import { BoardsService } from './boards.service';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 @Component({
   selector: 'app-user',
@@ -31,6 +32,10 @@ export class UserComponent implements OnInit {
     this.value = form.value;
     console.log(form.value);
     this.boards.push(this.value);
+  }
+
+  chkid(id:number) {
+    console.log(id);
   }
 
 }

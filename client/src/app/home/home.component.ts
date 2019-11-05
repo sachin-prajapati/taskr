@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.myStyle = {
-      'position': 'fixed',
+      'position': 'absolute',
       'width': '100%',
       'height': '100vh',
       'z-index': -1,
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.myParams = {
       particles: {
           number: {
-              value: 60,
+              value: 80,
           },
           color: {
               value: '#173E43',

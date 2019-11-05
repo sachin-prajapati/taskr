@@ -53,15 +53,15 @@ export class VerificationComponent implements OnInit {
     setTimeout(() => {
       this.resend = true;
     }, 120000);
-    // this.serverservice.resendOtp(this.name)
-    // .subscribe(
-    //   (response) =>{
-    //      console.log(response);
-    //     },
-    //   (error) =>{ 
-    //     console.log(error);
-    //   },
-    // );
+    this.serverservice.resendOtp(this.name)
+    .subscribe(
+      (response) =>{
+         console.log(response);
+        },
+      (error) =>{ 
+        console.log(error);
+      },
+    );
   }
 
   Verify(form : NgForm) {
@@ -72,11 +72,10 @@ export class VerificationComponent implements OnInit {
       (response) =>{ 
         this.tk = response ;
         console.log(this.tk);
-        // this.name = response;
-        // console.log(this.name.name);
-        // localStorage.setItem('token', this.tk.token);
-        // localStorage.setItem('name',this.name.name);
-        // this.router.navigate(['/']);
+        // console.log(this.tk.userLoginResponse.userName);
+        localStorage.setItem('token', this.tk.userLoginResponse.token);
+        localStorage.setItem('name',this.tk.userLoginResponse.userName);
+        this.router.navigate(['/user']);
       },
       (error) =>console.log(error), 
     );

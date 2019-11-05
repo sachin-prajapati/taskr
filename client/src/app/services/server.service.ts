@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://33844161.ngrok.io";
+  private rootUrl = "https://68eb9386.ngrok.io";
 
   constructor(private http: HttpClient) { }
 
@@ -14,14 +14,14 @@ export class ServerService {
     signUpUser(fullName:string,userName:string,email:string,password:string,confirmPassword:string) {
       const headers = new HttpHeaders({'Content-Type':'application/json'})
       // console.log(JSON.stringify({name,email,password}));
-      return this.http.post(this.rootUrl+'/auth/signUp',JSON.stringify({fullName,userName,email,password,confirmPassword}),
+      return this.http.post(this.rootUrl+'/api/auth/signUp',JSON.stringify({fullName,userName,email,password,confirmPassword}),
       {headers: headers});
   }
 
   logInUser(email:string,password:string) {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
-    console.log(JSON.stringify({name,email,password}));
-    return this.http.post(this.rootUrl+'/auth/login',
+    console.log(JSON.stringify({email,password}));
+    return this.http.post(this.rootUrl+'/api/auth/login',
     JSON.stringify({email,password}),
     {headers: headers});
   }
@@ -29,14 +29,14 @@ export class ServerService {
   verifyUser(otp:string, name:any) {
     console.log(name);
     const headers = new HttpHeaders({'Content-Type':'application/json'})
-    return this.http.post(this.rootUrl+'/auth/verifyEmail/'+name,
+    return this.http.post(this.rootUrl+'/api/auth/verifyEmail/'+name,
     JSON.stringify({otp}),
     {headers: headers});
   }
 
   resendOtp(name:any) {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
-    return this.http.post(this.rootUrl+'/auth/resend/'+name,
+    return this.http.post(this.rootUrl+'/api/auth/resend/'+name,
     {headers: headers});
   }
 
