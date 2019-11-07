@@ -1,7 +1,7 @@
 export class Boards {
-    public bname : string;
+    public bName : string;
 
-    constructor(bname:string) {
-        this.bname=bname;
+    constructor(bName:string) {
+        this.bName=bName;
     }
 }

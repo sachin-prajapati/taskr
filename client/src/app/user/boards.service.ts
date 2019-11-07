@@ -6,9 +6,7 @@ import { Boards } from './boards.model';
 })
 export class BoardsService {
 
-  private boards: Boards[] = [
-    new Boards('Anonymous'),
-  ];
+  private boards: Boards[] = [];
 
   constructor() { }
 

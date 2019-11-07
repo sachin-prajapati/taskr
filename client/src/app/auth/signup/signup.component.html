@@ -19,13 +19,13 @@
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="box">
             <div class="head">
-                <h4><b>SignUp</b></h4>
+                <h2><b>SignUp</b></h2>
             </div>
             <form (ngSubmit)="onSignup(f)" #f="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input
-                    placeholder = "Name" 
+                    placeholder = "Enter FullName" 
                     type="name" 
                     id="fullName" 
                     name="fullName" 
@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="username">UserName</label>
                     <input
-                    placeholder = "UserName" 
+                    placeholder = "e.g.(mike_26)"
                     type="userName" 
                     id="userName" 
                     name="userName" 
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label for="email">E-Mail</label>
                     <input 
-                    placeholder = "E-Mail"
+                    placeholder = "e.g.(abc@xyz.com)"
                     type="email" 
                     id="email" 
                     name="email"
@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input
-                    placeholder = "Password"
+                    placeholder = "Minimum length 6 characters"
                     type="password" 
                     id="password" 
                     name="password" 
@@ -91,7 +91,7 @@
                 <div class="form-group">
                     <label for="cpassword">Confirm Password</label>
                     <input
-                    placeholder = "Confirm Password"
+                    placeholder = "Confirm your Password"
                     appConfirmPassword="password"
                     type="password" 
                     id="confirmPassword" 

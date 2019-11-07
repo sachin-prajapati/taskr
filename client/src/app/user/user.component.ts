@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Boards } from './boards.model';
 import { BoardsService } from './boards.service';
 import { createOfflineCompileUrlResolver } from '@angular/compiler';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-user',
@@ -14,13 +15,25 @@ export class UserComponent implements OnInit {
   name:string;
   wantaddboard=false;
   boards:Boards[];
-  value:any;
+  res:any;
 
-  constructor(private boardsservice: BoardsService,) { }
+  constructor(private boardsservice: BoardsService,
+              private serverservice: ServerService,) { }
 
   ngOnInit() {
     this.name=localStorage.getItem('name');
     this.boards = this.boardsservice.getboards();
+    this.serverservice.getUserBoards()
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res = response;
+        this.boards = this.res;
+      },
+      (error) => {
+        console.log(error);
+      },
+    )
   }
 
   showinput() {
@@ -29,9 +42,18 @@ export class UserComponent implements OnInit {
 
   addboard(form:NgForm) {
     this.wantaddboard=false;
-    this.value = form.value;
+    const value = form.value;
     console.log(form.value);
-    this.boards.push(this.value);
+    this.serverservice.addBoard(value.bName)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.boards.push(value);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 
   chkid(id:number) {

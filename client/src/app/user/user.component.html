@@ -10,18 +10,18 @@
         <div class="col-lg-9 col-md-9 col-sm-12">
             <h5><b>Boards</b></h5>
             <div *ngFor="let boards of boards; index as id">
-            <a 
-            style="cursor : pointer;text-decoration:none;"
-            [routerLink]="['/board',id]"
-            (click)=chkid(id)
-            routerLinkActive="active"
-            class="list-group-item clearfix box" style="margin-bottom:20px;">
-                <div class="pull-left box1">
-                    <h4
-                    class="list-group-item-heading name"
-                    style="color:#DDDFD4;">{{boards.bname}}</h4>
-                </div>
-            </a>
+                <a 
+                style="cursor : pointer;text-decoration:none;"
+                [routerLink]="['/board',id]"
+                (click)=chkid(id)
+                routerLinkActive="active"
+                class="list-group-item clearfix box" style="margin-bottom:20px;">
+                    <div class="pull-left box1">
+                        <h4
+                        class="list-group-item-heading name"
+                        style="color:#DDDFD4;">{{boards.bName}}</h4>
+                    </div>
+                </a>
             </div>
             <div class="list-group-item clearfix add">
                 <div *ngIf=!wantaddboard class="name">
@@ -30,12 +30,12 @@
                 <div *ngIf=wantaddboard>
                     <form (ngSubmit)="addboard(f)" #f="ngForm">
                         <div class="form-group">
-                            <label for="email">Board Name</label>
+                            <label for="boardname">Board Name</label>
                             <input 
-                            placeholder = "Board Name"
+                            placeholder = "Enter Board Name"
                             type="text"
-                            id="bname" 
-                            name="bname"
+                            id="bName" 
+                            name="bName"
                             ngModel
                             class="form-control" 
                             required

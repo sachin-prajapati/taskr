@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,12 @@ export class HomeComponent implements OnInit {
   myParams: object = {};
   width: number = 100;
   height: number = 100;
+  path:any;
+  i:number=0;
+  imgpath:any;
 
-  constructor(@Inject(DOCUMENT) document) { }
+  constructor(@Inject(DOCUMENT) document,
+              private serverservice:ServerService,) { }
 
   ngOnInit() {
     this.myStyle = {
@@ -48,6 +53,20 @@ export class HomeComponent implements OnInit {
           },
       }
     };
+
+    // this.serverservice.getritikimg()
+    // .subscribe(
+    //   (response) => {
+    //     const j = 0;
+    //     // console.log(response);
+    //     this.path=response;
+    //     console.log(this.path[0].image.split('/')[3]+"/"+this.path[0].image.split('/')[4]+"/"+this.path[0].image.split('/')[5]);
+    //     this.imgpath = "https://ef418794.ngrok.io/"+this.path[0].image.split('/')[3]+"/"+this.path[0].image.split('/')[4]+"/"+this.path[0].image.split('/')[5];
+    //   },
+    //   (error) => {
+    //     console.log(error)
+    //   },
+    // )
   }
 
   // @HostListener('window:scroll', ['$event'])

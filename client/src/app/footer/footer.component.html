@@ -10,7 +10,7 @@
                 <h5 style="margin:2rem;">
                     Sign up and become one of the millions of people around the world using TaskR to get more done.
                 </h5>
-                <p><a routerLink="/signup"><button class="btn btn-success mybtn">SignUp - It's free</button></a></p>
+                <p><a routerLink="/signup"><button *ngIf="!authservice.loggedIn()" class="btn btn-success mybtn">SignUp - It's free</button></a></p>
             </div>
             <div class="col-lg-4"><img src="assets/images/footer.svg" alt="robot"></div>
         </div>

@@ -1,0 +1,12 @@
+.container {
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+.box {
+    height:auto;
+    width:15rem;
+    background-color:#DDDFD4;
+}
+.listname {
+    color:black;
+}

@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   tk:any;
   name:any;
   load=false;
+  errormsg:any;
+  uid:any;
 
   constructor(private serverservice : ServerService,
               private router: Router,) { }
@@ -51,14 +53,15 @@ export class LoginComponent implements OnInit {
         this.load=false;
       },
       (error: HttpErrorResponse) =>{
-        console.log(error)
-        // this.errormsg = error.error.message;
-        // if(this.errormsg === "Please verify your email address to login.") {
-        //   this.uid = error.error;
-        //   // console.log(this.uid.userName);
-        //   this.router.navigate(['/verify',this.tk.userName])
+        console.log(error);
+        this.errormsg = error.error.message;
+        if(this.errormsg === "Please verify your email address to login.") {
+          this.uid = error.error;
+          // console.log(this.uid.userName);
+          this.router.navigate(['/verify',this.uid.userName])
         this.load=false;
         }
+      }
     );
   }
 

@@ -1,1 +1,40 @@
-<p>board works!</p>
+<div class="container">
+    <div style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
+        <div class="list-group-item box">
+            <div class="pull-left">
+                <h4
+                class="list-group-item-heading listname"
+                >{{lists.lname}}</h4>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="list-group-item box">
+        <div *ngIf=!wantaddlist class="addlist">
+            <button (click)=showinput() class="btn btn-primary">Add Another List</button>
+        </div>
+        <div *ngIf=wantaddlist>
+            <form (ngSubmit)="addlist(f)" #f="ngForm">
+                <div class="form-group">
+                    <label for="listname">List Name</label>
+                    <input 
+                    placeholder = "Enter List Name"
+                    type="text"
+                    id="lname" 
+                    name="lname"
+                    ngModel
+                    class="form-control" 
+                    required
+                    #lname="ngModel">
+                    <span 
+                    class="help-block"
+                    *ngIf="!lname.valid && lname.touched"
+                    style="color:red;">Enter a valid List Name</span>
+                </div>
+                <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add List</button>
+            </form> 
+        </div>
+    </div>
+</div>

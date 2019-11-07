@@ -40,7 +40,7 @@ input {
 }
 .box {
     width:31rem;
-    margin-top:15rem;
+    margin-top:12rem;
     border-radius: 10px;
     border-bottom: 5px solid #173E43;
     padding:10px 50px;
@@ -48,23 +48,23 @@ input {
 .head {
     text-align : center;
     color : #173E43;
+    margin-bottom:2rem;
 }
 .head h4{
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 .mybutton {
-    margin-left:10rem;
-    padding : 6px 20px;
-    border : 2px solid #3FB0AC;
-    background-color : transparent;
-    color : #3FB0AC;
-    border-radius : 10px;
+    margin:1rem 10rem;
+    padding : 8px 25px;
+    border : 0px;
+    letter-spacing:0.8px;
+    background-image: linear-gradient(to right, #173E43 , #3FB0AC);
+    color : #FFFFFF;
+    border-radius : 2px;
 }
 .mybutton:hover {
-    background-color : #3FB0AC;
-    color : white;
-    border : 2px solid #3FB0AC; 
-    transition: all 0.5s ease-in-out;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
+    transition:0.2s;
 }
 .foot {
     text-align:center;

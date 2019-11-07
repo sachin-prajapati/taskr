@@ -6,8 +6,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://68eb9386.ngrok.io";
-
+  private rootUrl = "https://8f77ffd2.ngrok.io";
+  
   constructor(private http: HttpClient) { }
 
 
@@ -36,8 +36,32 @@ export class ServerService {
 
   resendOtp(name:any) {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
-    return this.http.post(this.rootUrl+'/api/auth/resend/'+name,
+    return this.http.get(this.rootUrl+'/api/auth/resendOtp/'+name,
     {headers: headers});
+  }
+
+  addBoard(bName:string) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.post(this.rootUrl+'/api/board/create', JSON.stringify({bName}), 
+        { headers: headers }); 
+  }
+
+  getUserBoards() {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.get(this.rootUrl+'/api/home', { headers: headers });
+  }
+
+
+  getritikimg() {
+    return this.http.get(this.rootUrl+'/hospitals/');
   }
 
 }

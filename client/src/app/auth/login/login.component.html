@@ -20,14 +20,14 @@
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="box">
                 <div class="head">
-                    <h4><b>LogIn</b></h4>
+                    <h2><b>LogIn</b></h2>
                 </div>
                 <form (ngSubmit)="onLogin(f)" #f="ngForm">
                     <div class="form-group">
                         <label for="email">E-Mail</label>
                         <input 
-                        placeholder = "E-Mail"
-                        type="email" 
+                        placeholder = "e.g.(abc@xyz.com)"
+                        type="email"
                         id="email" 
                         name="email"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input 
-                        placeholder = "Password"
+                        placeholder = "Minimum length 6 characters"
                         type="password" 
                         id="password" 
                         name="password" 
@@ -57,7 +57,7 @@
                         *ngIf="!password.valid && password.touched"
                         style="color:red;">Enter minimum 6 character password</span>
                     </div>
-                    <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">LogIn</button>
+                    <button type="submit" class="btn mybutton" [disabled]="!f.valid">LogIn</button>
                 </form>
                 <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
             </div>
