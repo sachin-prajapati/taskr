@@ -1,12 +1,25 @@
-.container {
+.all {
     margin-top:1rem;
     margin-bottom:1rem;
+    height:auto;
 }
 .box {
-    height:auto;
-    width:15rem;
     background-color:#DDDFD4;
+    margin-bottom:1rem;
 }
 .listname {
     color:black;
+}
+.update {
+    width:13rem;
+    padding:15px 25px;
+    border-radius:5px;
+    background-color:#DDDFD4;
+}
+.bookmark {
+    border: 0px;
+    background-color:transparent;
+}
+.bookmark:focus {
+    outline:none;
 }

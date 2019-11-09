@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
       },
       (error: HttpErrorResponse) =>{
         console.log(error);
+        this.load=false;
         this.errormsg = error.error.message;
         if(this.errormsg === "Please verify your email address to login.") {
           this.uid = error.error;

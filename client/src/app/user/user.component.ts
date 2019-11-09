@@ -15,7 +15,12 @@ export class UserComponent implements OnInit {
   name:string;
   wantaddboard=false;
   boards:Boards[];
+  boardid:number[]=[];
+  i:number;
+  j:number;
   res:any;
+  id:number;
+  idb:any;
 
   constructor(private boardsservice: BoardsService,
               private serverservice: ServerService,) { }
@@ -29,6 +34,14 @@ export class UserComponent implements OnInit {
         console.log(response);
         this.res = response;
         this.boards = this.res;
+        for(this.i=0; this.i<this.boards.length; this.i++) {
+          this.id = this.boards[this.i].id;
+          // console.log(this.id);
+          for(this.j=this.i; this.j<this.i+1; this.j++) {
+            this.boardid.push(this.id);
+            // console.log(this.boardid)
+          }
+        }
       },
       (error) => {
         console.log(error);

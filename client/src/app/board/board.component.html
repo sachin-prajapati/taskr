@@ -1,40 +1,93 @@
-<div class="container">
-    <div style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
-        <div class="list-group-item box">
-            <div class="pull-left">
-                <h4
-                class="list-group-item-heading listname"
-                >{{lists.lname}}</h4>
-            </div>
-            <div>
-                
-            </div>
-        </div>
-    </div>
-    <div class="list-group-item box">
-        <div *ngIf=!wantaddlist class="addlist">
-            <button (click)=showinput() class="btn btn-primary">Add Another List</button>
-        </div>
-        <div *ngIf=wantaddlist>
-            <form (ngSubmit)="addlist(f)" #f="ngForm">
-                <div class="form-group">
-                    <label for="listname">List Name</label>
-                    <input 
-                    placeholder = "Enter List Name"
-                    type="text"
-                    id="lname" 
-                    name="lname"
-                    ngModel
-                    class="form-control" 
-                    required
-                    #lname="ngModel">
-                    <span 
-                    class="help-block"
-                    *ngIf="!lname.valid && lname.touched"
-                    style="color:red;">Enter a valid List Name</span>
+<div class="container-fluid all">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="update">
+                <div *ngIf=!update>
+                    <button (click)=updateboard() class="btn btn-primary">Update Board</button>
                 </div>
-                <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add List</button>
-            </form> 
+                <div *ngIf=update>
+                    <form (ngSubmit)="updatedetails(f)" #f="ngForm">
+                        <div class="form-group">
+                            <label for="listname">Description</label>
+                            <textarea
+                            placeholder = "Enter Description Here"
+                            rows="5"
+                            id="desc" 
+                            name="desc"
+                            ngModel
+                            class="form-control"></textarea>
+                            <label for="bName">Board Name</label>
+                            <input 
+                            placeholder = "Enter Board Name"
+                            type="text"
+                            id="bName" 
+                            name="bName"
+                            ngModel
+                            class="form-control" 
+                            required
+                            #bName="ngModel">
+                            <span
+                            class="help-block"
+                            *ngIf="!bName.valid && bName.touched"
+                            style="color:red;">Board Name cannot be empty</span>
+                        </div>
+                        <div *ngIf=!bookmark>
+                            <button class="bookmark" (click)="addbookmark()">
+                                <img src="assets/images/bookmark.png" alt="bookmark">
+                            </button>
+                        </div>
+                        <div *ngIf=bookmark>
+                            <button class="bookmark" (click)="deletebookmark()">
+                                <img src="assets/images/bookmarkadded.png" alt="bookmarkadded">
+                            </button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Update Board</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2" style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
+            <div class="list-group-item box">
+                <div class="pull-left">
+                    <h4
+                    class="list-group-item-heading listname">{{lists.lname}}</h4>
+                </div>
+                <div>
+                    
+                </div>
+                <div>
+                    <button (click)=showinput() class="btn btn-primary">Add Card</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item box">
+            <div *ngIf=!wantaddlist class="addlist">
+                <button (click)=showinput() class="btn btn-primary">Add Another List</button>
+            </div>
+            <div *ngIf=wantaddlist>
+                <form (ngSubmit)="addlist(f)" #f="ngForm">
+                    <div class="form-group">
+                        <label for="listname">List Name</label>
+                        <input 
+                        placeholder = "Enter List Name"
+                        type="text"
+                        id="lname" 
+                        name="lname"
+                        ngModel
+                        class="form-control" 
+                        required
+                        #lname="ngModel">
+                        <span 
+                        class="help-block"
+                        *ngIf="!lname.valid && lname.touched"
+                        style="color:red;">Enter a valid List Name</span>
+                    </div>
+                    <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add List</button>
+                    <button (click)="hideinput()" class="btn btn-danger mybutton"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                </form> 
+            </div>
         </div>
     </div>
 </div>

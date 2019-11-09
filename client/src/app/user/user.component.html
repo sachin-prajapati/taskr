@@ -12,7 +12,7 @@
             <div *ngFor="let boards of boards; index as id">
                 <a 
                 style="cursor : pointer;text-decoration:none;"
-                [routerLink]="['/board',id]"
+                [routerLink]="['/board',boardid[id]]"
                 (click)=chkid(id)
                 routerLinkActive="active"
                 class="list-group-item clearfix box" style="margin-bottom:20px;">

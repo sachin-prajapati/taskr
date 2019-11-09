@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://8f77ffd2.ngrok.io";
+  private rootUrl = "https://34653dac.ngrok.io";
   
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class ServerService {
   logInUser(email:string,password:string) {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
     console.log(JSON.stringify({email,password}));
-    return this.http.post(this.rootUrl+'/api/auth/login',
+    return this.http.post(this.rootUrl+'/api/Account/UserLogin',
     JSON.stringify({email,password}),
     {headers: headers});
   }
@@ -59,6 +59,14 @@ export class ServerService {
     return this.http.get(this.rootUrl+'/api/home', { headers: headers });
   }
 
+  getBoarddetails(id:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.get(this.rootUrl+'/api/board/'+id, { headers: headers });
+  }
 
   getritikimg() {
     return this.http.get(this.rootUrl+'/hospitals/');
