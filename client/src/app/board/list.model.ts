@@ -1,7 +1,11 @@
-export class Lists {
-    public lname : string;
+import { Cards } from './card.model';
 
-    constructor(lname:string) {
-        this.lname=lname;
+export class Lists {
+    public name : string;
+    public cards:Cards[]=[]
+
+    constructor(name:string, cards:Cards[]) {
+        this.name=name;
+        this.cards=cards;
     }
 }

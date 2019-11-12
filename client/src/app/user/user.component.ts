@@ -67,6 +67,26 @@ export class UserComponent implements OnInit {
         console.log(error);
       }
     )
+
+    this.serverservice.getUserBoards()
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res = response;
+        this.boards = this.res;
+        for(this.i=0; this.i<this.boards.length; this.i++) {
+          this.id = this.boards[this.i].id;
+          // console.log(this.id);
+          for(this.j=this.i; this.j<this.i+1; this.j++) {
+            this.boardid.push(this.id);
+            // console.log(this.boardid)
+          }
+        }
+      },
+      (error) => {
+        console.log(error);
+      },
+    )
   }
 
   chkid(id:number) {

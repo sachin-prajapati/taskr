@@ -1,7 +1,7 @@
 .all {
-    margin-top:1rem;
-    margin-bottom:1rem;
-    height:auto;
+    height:100vh;
+    background:url(../../assets/images/boardbg.jpg);
+    background-size:cover;
 }
 .box {
     background-color:#DDDFD4;
@@ -14,7 +14,7 @@
     width:13rem;
     padding:15px 25px;
     border-radius:5px;
-    background-color:#DDDFD4;
+    background-color:rgba(255,255,255,0.5);
 }
 .bookmark {
     border: 0px;

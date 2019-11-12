@@ -6,9 +6,7 @@ import { Lists } from './list.model';
 })
 export class ListService {
 
-  private lists:Lists[] = [
-    new Lists('List 1'),
-  ]
+  private lists:Lists[] = []
 
   constructor() { }
 

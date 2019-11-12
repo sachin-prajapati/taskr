@@ -6,12 +6,12 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://34653dac.ngrok.io";
+  private rootUrl = "https://978d71a0.ngrok.io";
   
   constructor(private http: HttpClient) { }
 
 
-    signUpUser(fullName:string,userName:string,email:string,password:string,confirmPassword:string) {
+  signUpUser(fullName:string,userName:string,email:string,password:string,confirmPassword:string) {
       const headers = new HttpHeaders({'Content-Type':'application/json'})
       // console.log(JSON.stringify({name,email,password}));
       return this.http.post(this.rootUrl+'/api/auth/signUp',JSON.stringify({fullName,userName,email,password,confirmPassword}),
@@ -21,7 +21,7 @@ export class ServerService {
   logInUser(email:string,password:string) {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
     console.log(JSON.stringify({email,password}));
-    return this.http.post(this.rootUrl+'/api/Account/UserLogin',
+    return this.http.post(this.rootUrl+'/api/auth/login',
     JSON.stringify({email,password}),
     {headers: headers});
   }
@@ -68,8 +68,34 @@ export class ServerService {
     return this.http.get(this.rootUrl+'/api/board/'+id, { headers: headers });
   }
 
-  getritikimg() {
-    return this.http.get(this.rootUrl+'/hospitals/');
+  addList(name:string, id:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.post(this.rootUrl+'/api/board/addList/'+id, JSON.stringify({name}), 
+        { headers: headers }); 
+  }
+
+  updateBoard(bName:string, description:string, id:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.patch(this.rootUrl+'/api/board/update/'+id, JSON.stringify({bName,description}), 
+        { headers: headers }); 
+  }
+
+  bookmark(bookmark:boolean, id:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.put(this.rootUrl+'/api/board/addToFavourite/'+id, JSON.stringify({bookmark}), 
+        { headers: headers }); 
   }
 
 }

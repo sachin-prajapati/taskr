@@ -7,9 +7,10 @@
             <h2 style="color:#173E43"><b>Welcome</b></h2>
             <h2 style="color:#3FB0AC"><b>{{name}}</b></h2>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <h5><b>Boards</b></h5>
             <div *ngFor="let boards of boards; index as id">
+                <div *ngIf=!boards.bookmark>
                 <a 
                 style="cursor : pointer;text-decoration:none;"
                 [routerLink]="['/board',boardid[id]]"
@@ -22,6 +23,7 @@
                         style="color:#DDDFD4;">{{boards.bName}}</h4>
                     </div>
                 </a>
+            </div>
             </div>
             <div class="list-group-item clearfix add">
                 <div *ngIf=!wantaddboard class="name">
@@ -48,6 +50,25 @@
                         <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Board</button>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <h5><b>Favourites</b></h5>
+            <div *ngFor="let boards of boards; index as id">
+                <div *ngIf=boards.bookmark>
+                <a 
+                style="cursor : pointer;text-decoration:none;"
+                [routerLink]="['/board',boardid[id]]"
+                (click)=chkid(id)
+                routerLinkActive="active"
+                class="list-group-item clearfix box" style="margin-bottom:20px;">
+                    <div class="pull-left box1">
+                        <h4
+                        class="list-group-item-heading name"
+                        style="color:#DDDFD4;">{{boards.bName}}</h4>
+                    </div>
+                </a>
+            </div>
             </div>
         </div>
     </div>
