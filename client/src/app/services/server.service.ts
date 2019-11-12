@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://978d71a0.ngrok.io";
+  private rootUrl = "https://59fb13e0.ngrok.io";
   
   constructor(private http: HttpClient) { }
 
@@ -95,7 +95,17 @@ export class ServerService {
       'Authorization': `Bearer `+token,
     })
     return this.http.put(this.rootUrl+'/api/board/addToFavourite/'+id, JSON.stringify({bookmark}), 
-        { headers: headers }); 
+        { headers: headers });
+  }
+
+  addCard(name:string, listid:any, boardid:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.post(this.rootUrl+'/api/board/addCard/'+boardid+'/'+listid, JSON.stringify({name}), 
+        { headers: headers });
   }
 
 }

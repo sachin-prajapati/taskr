@@ -55,11 +55,37 @@
                     <h4
                     class="list-group-item-heading listname">{{lists.name}}</h4>
                 </div>
-                <div>
-                    
+                <div *ngFor="let cards of lists.cards, index as id">
+                    <div class="list-group-item" (click)=expandcard(cards.id)>
+                        <h4 class="list-group-item-heading">
+                            {{cards.name}}
+                        </h4>
+                    </div>
                 </div>
-                <div>
-                    <button (click)=showinput() class="btn btn-primary">Add Card</button>
+                <div *ngIf=!wantaddcard>
+                    <button (click)=showinputcard() class="btn btn-primary">Add Card</button>
+                </div>
+                <div *ngIf=wantaddcard>
+                    <form (ngSubmit)="addcard(f, lists.id)" #f="ngForm">
+                        <div class="form-group">
+                            <label for="cardname">Card Name</label>
+                            <input 
+                            placeholder = "Enter Card Name"
+                            type="text"
+                            id="cname"
+                            name="cname"
+                            ngModel
+                            class="form-control" 
+                            required
+                            #cname="ngModel">
+                            <span 
+                            class="help-block"
+                            *ngIf="!cname.valid && cname.touched"
+                            style="color:red;">Enter a valid Card Name</span>
+                        </div>
+                        <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
+                        <button (click)="hideinputcard()" class="btn btn-danger mybutton"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                    </form> 
                 </div>
             </div>
             <!-- </div> -->

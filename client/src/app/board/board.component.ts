@@ -23,6 +23,7 @@ export class BoardComponent implements OnInit {
   update=false;
   cards:Cards[];
   bookmark=false;
+  wantaddcard=false;
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -40,6 +41,7 @@ export class BoardComponent implements OnInit {
         console.log(response);
         this.res=response;
         this.lists=this.res.lists;
+        console.log(this.res.lists[1].cards);
         this.bookmark=this.res.bookmark;
         this.editBoard.setValue({
           bName:this.res.bName,
@@ -60,14 +62,38 @@ export class BoardComponent implements OnInit {
     this.wantaddlist=true;
   }
 
+  showinputcard() {
+    this.wantaddcard=true;
+  }
+
   hideinput() {
     this.wantaddlist=false;
+  }
+
+  hideinputcard() {
+    this.wantaddcard=false;
   }
 
   addlist(form:NgForm) {
     this.wantaddlist=false;
     const value = form.value;
     this.serverservice.addList(value.name, this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.lists.push(value);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  addcard(form:NgForm, listid) {
+    console.log(listid);
+    this.wantaddcard=false;
+    const value = form.value;
+    this.serverservice.addCard(value.cname, listid, this.boardid)
     .subscribe(
       (response) => {
         console.log(response);
