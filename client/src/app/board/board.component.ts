@@ -217,4 +217,8 @@ export class BoardComponent implements OnInit {
     this.updatecards=true;
   }
 
+  updatecard(form:NgForm) {
+    const value = form.value;
+  }
+
 }

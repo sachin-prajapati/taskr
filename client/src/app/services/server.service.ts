@@ -108,4 +108,14 @@ export class ServerService {
         { headers: headers });
   }
 
+  updateCard(name:string, description:string, priority:string, boardid:any, listid:any, cardid:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.patch(this.rootUrl+'/api/board/updateCard/'+boardid+'/'+listid+'/'+cardid, JSON.stringify({name,description,priority}), 
+        { headers: headers });
+  }
+
 }

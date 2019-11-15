@@ -134,7 +134,7 @@
     </div>
 </div>
 <div *ngIf=updatecards class="add-card-background">
-    <div class="contain-add-card">
+    <div class="contain-update-card">
         <form (ngSubmit)="updatecard(f)" #f="ngForm" class="addcard">
             <div class="form-group">
                 <input 
@@ -150,8 +150,35 @@
                 class="help-block"
                 *ngIf="!cname.valid && cname.touched"
                 style="color:red;">Enter a valid Card Name</span>
+                <label for="listname">Description</label>
+                <textarea
+                placeholder = "Enter Description Here"
+                rows="5"
+                id="description"
+                name="description"
+                ngModel
+                class="form-control"></textarea>
+                <label for="priority">Task Priority</label>
+                <input 
+                type="radio"
+                name="priority"
+                value="High"
+                ngModel
+                required> High
+                <input 
+                type="radio"
+                name="priority"
+                value="Medium"
+                ngModel
+                required> Medium
+                <input 
+                type="radio"
+                name="priority"
+                value="Low"
+                ngModel
+                required> Low
             </div>
-            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Update Details</button>
             <button (click)="hideinputcard()" class="btn btn-danger mybutton">
                 <span class="glyphicon glyphicon-remove"></span> Remove
             </button>
