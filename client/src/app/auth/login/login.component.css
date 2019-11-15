@@ -5,6 +5,7 @@ input {
     border-left: 3px solid #3FB0AC;
     width:25rem;
 }
+/* Loader */
 .background {
     position:absolute;
     height:100vh;
@@ -32,6 +33,7 @@ input {
 @keyframes rotate {
     100%{transform:rotate(360deg);}
 }
+/* Loader */
 .all {
     background:url(../../../assets/images/login.svg);
     background-size:100% auto;

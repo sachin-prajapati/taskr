@@ -1,11 +1,51 @@
+/* Loader */
+.background {
+    position:absolute;
+    height:100vh;
+    width:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:2;
+}
+.loader {
+    width:100px;
+    height:200px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:2;
+}
+.loader-circle {
+    width:calc(100% - 0.000001px);
+    height:calc(100% - 0.000001px);
+    border:8px solid #173E43;
+    border-top:8px solid #3FB0AC;
+    border-radius:50%;
+    animation:rotate 5s linear infinite;
+}
+@keyframes rotate {
+    100%{transform:rotate(360deg);}
+}
+/* Loader */
 .all {
     height:100vh;
     background:url(../../assets/images/boardbg.jpg);
+    background-repeat: repeat-y;
     background-size:cover;
 }
 .box {
     background-color:#DDDFD4;
     margin-bottom:1rem;
+    width:15rem;
+    margin:1rem;
+}
+.boxadd {
+    background-color:#DDDFD4;
+    margin-bottom:1rem;
+    height:8rem;
+    border-radius:5px;
+    width:15rem;
+    margin:1rem;
 }
 .listname {
     color:black;
@@ -15,6 +55,7 @@
     padding:15px 25px;
     border-radius:5px;
     background-color:rgba(255,255,255,0.5);
+    margin-top:1rem;
 }
 .bookmark {
     border: 0px;
@@ -22,4 +63,21 @@
 }
 .bookmark:focus {
     outline:none;
+}
+.contain-add-card {
+    position:relative;
+    left:40%;
+    background:url(../../assets/images/add-card.jpg);
+    background-size:cover;
+    height:10rem;
+    width:20rem;
+    padding:2rem 2rem;
+    border-radius:5px;
+}
+.add-card-background {
+    position:absolute;
+    top:5rem;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
 }

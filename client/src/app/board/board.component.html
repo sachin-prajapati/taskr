@@ -1,12 +1,22 @@
+<div *ngIf=load class="background">
+    <div class="loader">
+        <div class="loader-circle">
+            <div class="loader-circle">
+                <div class="loader-circle">
+                    <div class="loader-circle">
+                        <div class="loader-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid all">
     <div class="row">
         <div class="col-lg-2">
             <div class="update">
                 <div *ngIf=!update>
-                    <button (click)=updateboard() class="btn btn-primary">Update Board</button>
-                </div>
-                <div *ngIf=!update>
-                    <form (ngSubmit)="updatedetails(f)" #f="ngForm">
+                    <form (ngSubmit)="updatedetailsboard(f)" #f="ngForm">
                         <div class="form-group">
                             <label for="listname">Description</label>
                             <textarea
@@ -48,56 +58,33 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
-            <!-- <div class="col-lg-10"> -->
-            <div class="list-group-item box">
-                <div class="pull-left">
-                    <h4
-                    class="list-group-item-heading listname">{{lists.name}}</h4>
-                </div>
-                <div *ngFor="let cards of lists.cards, index as id">
-                    <div class="list-group-item" (click)=expandcard(cards.id)>
-                        <h4 class="list-group-item-heading">
-                            {{cards.name}}
+        <div class="col-lg-10">
+            <div class="row">
+            <div style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
+                <div class="list-group-item box">
+                    <div class="pull-left">
+                        <h4
+                        class="list-group-item-heading listname">
+                            {{lists.name}}
                         </h4>
                     </div>
-                </div>
-                <div *ngIf=!wantaddcard>
-                    <button (click)=showinputcard() class="btn btn-primary">Add Card</button>
-                </div>
-                <div *ngIf=wantaddcard>
-                    <form (ngSubmit)="addcard(f, lists.id)" #f="ngForm">
-                        <div class="form-group">
-                            <label for="cardname">Card Name</label>
-                            <input 
-                            placeholder = "Enter Card Name"
-                            type="text"
-                            id="cname"
-                            name="cname"
-                            ngModel
-                            class="form-control" 
-                            required
-                            #cname="ngModel">
-                            <span 
-                            class="help-block"
-                            *ngIf="!cname.valid && cname.touched"
-                            style="color:red;">Enter a valid Card Name</span>
+                    <div *ngFor="let cards of lists.cards, index as id">
+                        <div class="list-group-item" (click)=expandcard(lists.id,cards.id)>
+                            <p class="list-group-item-heading pull-left">
+                                {{cards.name}}
+                            </p>
                         </div>
-                        <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
-                        <button (click)="hideinputcard()" class="btn btn-danger mybutton"><span class="glyphicon glyphicon-remove"></span> Remove</button>
-                    </form> 
+                    </div>
+                    <button (click)=showinputcard(lists.id) class="btn btn-primary">Add Card</button>
                 </div>
             </div>
-            <!-- </div> -->
-        </div>
-        <div class="list-group-item box">
+            <div class="list-group-item boxadd">
             <div *ngIf=!wantaddlist class="addlist">
                 <button (click)=showinput() class="btn btn-primary">Add Another List</button>
             </div>
             <div *ngIf=wantaddlist>
                 <form (ngSubmit)="addlist(f)" #f="ngForm">
                     <div class="form-group">
-                        <label for="listname">List Name</label>
                         <input 
                         placeholder = "Enter List Name"
                         type="text"
@@ -117,5 +104,57 @@
                 </form> 
             </div>
         </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div *ngIf=wantaddcard class="add-card-background">
+    <div class="contain-add-card">
+        <form (ngSubmit)="addcard(f)" #f="ngForm" class="addcard">
+            <div class="form-group">
+                <input 
+                placeholder = "Enter Card Name"
+                type="text"
+                id="cname"
+                name="cname"
+                ngModel
+                class="form-control" 
+                required
+                #cname="ngModel">
+                <span 
+                class="help-block"
+                *ngIf="!cname.valid && cname.touched"
+                style="color:red;">Enter a valid Card Name</span>
+            </div>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
+            <button (click)="hideinputcard()" class="btn btn-danger mybutton">
+                <span class="glyphicon glyphicon-remove"></span> Remove
+            </button>
+        </form> 
+    </div>
+</div>
+<div *ngIf=updatecards class="add-card-background">
+    <div class="contain-add-card">
+        <form (ngSubmit)="updatecard(f)" #f="ngForm" class="addcard">
+            <div class="form-group">
+                <input 
+                placeholder = "Enter Card Name"
+                type="text"
+                id="cname"
+                name="cname"
+                ngModel
+                class="form-control" 
+                required
+                #cname="ngModel">
+                <span 
+                class="help-block"
+                *ngIf="!cname.valid && cname.touched"
+                style="color:red;">Enter a valid Card Name</span>
+            </div>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
+            <button (click)="hideinputcard()" class="btn btn-danger mybutton">
+                <span class="glyphicon glyphicon-remove"></span> Remove
+            </button>
+        </form> 
     </div>
 </div>

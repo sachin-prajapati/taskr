@@ -4,7 +4,6 @@ import { ListService } from './list.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServerService } from '../services/server.service';
-import { CardService } from './card.service';
 import { Cards } from './card.model';
 
 @Component({
@@ -24,6 +23,9 @@ export class BoardComponent implements OnInit {
   cards:Cards[];
   bookmark=false;
   wantaddcard=false;
+  listId:number;
+  load=false;
+  updatecards=false;
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -32,6 +34,7 @@ export class BoardComponent implements OnInit {
               private router:Router,) { }
 
   ngOnInit() {
+    this.load=true;
     this.lists = this.listsservice.getlists();
     this.boardid = this.route.snapshot.params.id;
 
@@ -47,9 +50,11 @@ export class BoardComponent implements OnInit {
           bName:this.res.bName,
           description:this.res.description,
         })
+        this.load=false;
       },
       (error) => {
         console.log(error);
+        this.load=false;
       }
     )
   }
@@ -62,8 +67,10 @@ export class BoardComponent implements OnInit {
     this.wantaddlist=true;
   }
 
-  showinputcard() {
+  showinputcard(lid) {
     this.wantaddcard=true;
+    this.listId=lid;
+    console.log(this.listId);
   }
 
   hideinput() {
@@ -72,9 +79,11 @@ export class BoardComponent implements OnInit {
 
   hideinputcard() {
     this.wantaddcard=false;
+    this.updatecards=false;
   }
 
   addlist(form:NgForm) {
+    this.load=true;
     this.wantaddlist=false;
     const value = form.value;
     this.serverservice.addList(value.name, this.boardid)
@@ -85,22 +94,66 @@ export class BoardComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.load=false;
       }
     )
-  }
 
-  addcard(form:NgForm, listid) {
-    console.log(listid);
-    this.wantaddcard=false;
-    const value = form.value;
-    this.serverservice.addCard(value.cname, listid, this.boardid)
+    this.serverservice.getBoarddetails(this.boardid)
     .subscribe(
       (response) => {
         console.log(response);
-        this.lists.push(value);
+        this.res=response;
+        this.lists=this.res.lists;
+        console.log(this.res.lists[1].cards);
+        this.bookmark=this.res.bookmark;
+        this.editBoard.setValue({
+          bName:this.res.bName,
+          description:this.res.description,
+        })
+        this.load=false;
       },
       (error) => {
         console.log(error);
+        this.load=false;
+      }
+    )
+
+  }
+
+  addcard(form:NgForm) {
+    this.load=true;
+    console.log(this.listId);
+    this.wantaddcard=false;
+    const value = form.value;
+    this.serverservice.addCard(value.cname, this.listId, this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        // this.lists.push(value);
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+      }
+    )
+
+    this.serverservice.getBoarddetails(this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res=response;
+        this.lists=this.res.lists;
+        // console.log(this.res.lists[1].cards);
+        this.bookmark=this.res.bookmark;
+        this.editBoard.setValue({
+          bName:this.res.bName,
+          description:this.res.description,
+        })
+        this.load=false;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
       }
     )
   }
@@ -113,16 +166,19 @@ export class BoardComponent implements OnInit {
     this.adddesc = false;
   }
 
-  updatedetails(form:NgForm) {
+  updatedetailsboard(form:NgForm) {
+    this.load=true;
     const value = form.value;
     console.log(value);
     this.serverservice.updateBoard(value.bName,value.description,this.boardid)
     .subscribe(
       (response) => {
         console.log(response);
+        this.load=false;
       },
       (error) => {
         console.log(error);
+        this.load=false;
       },
     )
   }
@@ -154,4 +210,11 @@ export class BoardComponent implements OnInit {
       },
     )
   }
+
+  expandcard(listId,cardId) {
+    console.log(listId);
+    console.log(cardId);
+    this.updatecards=true;
+  }
+
 }
