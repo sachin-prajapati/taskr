@@ -9,7 +9,7 @@ public class CardCollection {
     private int id;
     private String name;
     private String description;
-    private List<String>checklist=new ArrayList<>();
+    private List<ChecklistItem>checklist=new ArrayList<>();
     private LocalDateTime dueDate;
     private String priority;
 
@@ -37,11 +37,11 @@ public class CardCollection {
         this.description = description;
     }
 
-    public List<String> getChecklist() {
+    public List<ChecklistItem> getChecklist() {
         return checklist;
     }
 
-    public void setChecklist(List<String> checklist) {
+    public void setChecklist(List<ChecklistItem> checklist) {
         this.checklist = checklist;
     }
 
