@@ -69,7 +69,7 @@
                         </h4>
                     </div>
                     <div *ngFor="let cards of lists.cards, index as id">
-                        <div class="list-group-item" (click)=expandcard(lists.id,cards.id)>
+                        <div class="list-group-item" (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority)>
                             <p class="list-group-item-heading pull-left">
                                 {{cards.name}}
                             </p>
@@ -135,7 +135,8 @@
 </div>
 <div *ngIf=updatecards class="add-card-background">
     <div class="contain-update-card">
-        <form (ngSubmit)="updatecard(f)" #f="ngForm" class="addcard">
+        <button class="btn btn-success mybutton" (click)="prepopulate()">prepopulate</button>
+        <form (ngSubmit)="updatecard(fcard)" #f="ngForm" class="addcard">
             <div class="form-group">
                 <input 
                 placeholder = "Enter Card Name"

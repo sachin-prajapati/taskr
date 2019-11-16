@@ -21,11 +21,13 @@ export class UserComponent implements OnInit {
   res:any;
   id:number;
   idb:any;
+  load=false;
 
   constructor(private boardsservice: BoardsService,
               private serverservice: ServerService,) { }
 
   ngOnInit() {
+    this.load=true;
     this.name=localStorage.getItem('name');
     this.boards = this.boardsservice.getboards();
     this.serverservice.getUserBoards()
@@ -42,9 +44,11 @@ export class UserComponent implements OnInit {
             // console.log(this.boardid)
           }
         }
+        this.load=false;
       },
       (error) => {
         console.log(error);
+        this.load=false;
       },
     )
   }
@@ -54,6 +58,7 @@ export class UserComponent implements OnInit {
   }
 
   addboard(form:NgForm) {
+    this.load=true;
     this.wantaddboard=false;
     const value = form.value;
     console.log(form.value);
@@ -65,6 +70,7 @@ export class UserComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.load=false;
       }
     )
 
@@ -82,9 +88,11 @@ export class UserComponent implements OnInit {
             // console.log(this.boardid)
           }
         }
+        this.load=false;
       },
       (error) => {
         console.log(error);
+        this.load=false;
       },
     )
   }

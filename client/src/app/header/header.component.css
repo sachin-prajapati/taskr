@@ -21,14 +21,10 @@
 }
 .login:hover {
     color:white;
-    transition:1.2s;
+    transition:0.2s;
 }
 .login:focus {
     outline:none;
-}
-.logo:hover {
-    border-bottom:2px solid #173E43;
-    transition:all 0.2s ease-in-out;
 }
 .login::before {
     content:'';

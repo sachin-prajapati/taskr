@@ -1,14 +1,30 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Roboto&display=swap');
 </style>
+<!-- Loader -->
+<div *ngIf=load class="background">
+    <div class="loader">
+        <div class="loader-circle">
+            <div class="loader-circle">
+                <div class="loader-circle">
+                    <div class="loader-circle">
+                        <div class="loader-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Loader -->
 <div class="container-fluid user">
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12 mx-auto">
             <h2 style="color:#173E43"><b>Welcome</b></h2>
             <h2 style="color:#3FB0AC"><b>{{name}}</b></h2>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <h5><b>Boards</b></h5>
+        <div class="row">
+        <!-- <div class="col-lg-4 col-md-4 col-sm-12"> -->
+            <div><h5><b>Boards</b></h5></div>
             <div *ngFor="let boards of boards; index as id">
                 <div *ngIf=!boards.bookmark>
                 <a 
@@ -23,7 +39,7 @@
                         style="color:#DDDFD4;">{{boards.bName}}</h4>
                     </div>
                 </a>
-            </div>
+                </div>
             </div>
             <div class="list-group-item clearfix add">
                 <div *ngIf=!wantaddboard class="name">
@@ -51,9 +67,12 @@
                     </form>
                 </div>
             </div>
+        <!-- </div> -->
         </div>
-        <div class="col-lg-5">
-            <h5><b>Favourites</b></h5>
+        <div class="container-fluid">
+        <div class="row">
+        <!-- <div class="col-lg-5"> -->
+            <div><h5><b>Favourites</b></h5></div>
             <div *ngFor="let boards of boards; index as id">
                 <div *ngIf=boards.bookmark>
                 <a 
@@ -70,6 +89,8 @@
                 </a>
             </div>
             </div>
+        <!-- </div> -->
         </div>
+    </div>
     </div>
 </div>

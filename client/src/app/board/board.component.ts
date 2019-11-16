@@ -13,6 +13,7 @@ import { Cards } from './card.model';
 })
 export class BoardComponent implements OnInit {
   @ViewChild('f', {static:false}) editBoard : NgForm;
+  @ViewChild('fcard', {static:false}) editCard : NgForm;
 
   lists:Lists[];
   wantaddlist=false;
@@ -26,6 +27,9 @@ export class BoardComponent implements OnInit {
   listId:number;
   load=false;
   updatecards=false;
+  cardName:string;
+  cardDescription:string;
+  cardPriority:string;
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -211,14 +215,28 @@ export class BoardComponent implements OnInit {
     )
   }
 
-  expandcard(listId,cardId) {
+  expandcard(listId,cardId,cardName,cardDescription,cardPriority) {
     console.log(listId);
     console.log(cardId);
+    console.log(cardName);
+    console.log(cardDescription);
+    console.log(cardPriority);
+    this.cardName=cardName;
+    this.cardDescription=cardDescription;
+    this.cardPriority=cardPriority;
     this.updatecards=true;
   }
 
   updatecard(form:NgForm) {
     const value = form.value;
+  }
+
+  prepopulate() {
+    this.editCard.setValue({
+      name:this.cardName,
+      description:this.cardDescription,
+      priority:this.cardPriority,
+    })
   }
 
 }
