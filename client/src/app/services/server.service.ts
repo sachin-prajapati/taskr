@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://976f75ef.ngrok.io";
+  private rootUrl = "https://b17900b7.ngrok.io";
   
   constructor(private http: HttpClient) { }
 
@@ -127,4 +127,19 @@ export class ServerService {
     return this.http.get(this.rootUrl+'/api/board/updateCard/'+boardid, 
     { headers: headers });
   }
+
+  addMemberToBoard(memberUsername:string, boardid:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.patch(this.rootUrl+'/api/board/addMember/'+boardid, JSON.stringify({memberUsername}), 
+    { headers: headers });
+  }
+
+  deletecard() {
+
+  }
+
 }

@@ -100,8 +100,8 @@
 <div *ngIf=shownotifications class="add-card-background">
     <div class="contain-activity-board">
         <div *ngFor="let notifications of notifications, index as id">
-           <p>{{ notifications.activity }}</p>
-           <p>{{ notifications.activityTime }}</p>
+           <p>{{ notifications.notification }}</p>
+           <!-- <p>{{ notifications.activityTime }}</p> -->
         </div>
         <button (click)="hideNotifications()" class="btn btn-primary">Close</button>
     </div>

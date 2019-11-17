@@ -50,12 +50,16 @@
 .listname {
     color:black;
 }
+.update-coloumn {
+    padding:0px 0px ;
+}
 .update {
+    position:sticky;
+    top:0;
+    height:100vh;
     width:13rem;
     padding:15px 25px;
-    border-radius:5px;
     background-color:rgba(255,255,255,0.5);
-    margin-top:1rem;
 }
 .bookmark {
     border: 0px;
@@ -98,7 +102,8 @@
     background:url(../../assets/images/update-card.jpg);
     background-size:cover;
     color:#FFFFFF;
-    height:auto;
+    overflow:auto;
+    height:80vh;
     width:30rem;
     padding:2rem 2rem;
     border-radius:5px;

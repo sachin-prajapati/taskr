@@ -13,19 +13,11 @@
 </div>
 <div class="container-fluid all">
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-2 update-coloumn">
             <div class="update">
                 <div *ngIf=!update>
                     <form (ngSubmit)="updatedetailsboard(f)" #f="ngForm">
                         <div class="form-group">
-                            <label for="listname">Description</label>
-                            <textarea
-                            placeholder = "Enter Description Here"
-                            rows="5"
-                            id="description" 
-                            name="description"
-                            ngModel
-                            class="form-control"></textarea>
                             <label for="bName">Board Name</label>
                             <input 
                             placeholder = "Enter Board Name"
@@ -40,6 +32,14 @@
                             class="help-block"
                             *ngIf="!bName.valid && bName.touched"
                             style="color:red;">Board Name cannot be empty</span>
+                            <label for="listname">Description</label>
+                            <textarea
+                            placeholder = "Enter Description Here"
+                            rows="5"
+                            id="description" 
+                            name="description"
+                            ngModel
+                            class="form-control"></textarea>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Update Board</button>
@@ -59,6 +59,28 @@
                             <button (click)="showActivity()" class="btn btn-success mybutton">Activity</button>
                         </div>
                 </div>
+                <h6>Board Members</h6>
+                <div *ngFor="let memberName of boardMembers, index as id">
+                    <p>{{memberName}}</p>
+                </div>
+                <form (ngSubmit)="addmember(fmember)" #fmember="ngForm">
+                        <div class="form-group">
+                            <input 
+                            placeholder = "Username"
+                            type="text"
+                            id="name" 
+                            name="name"
+                            ngModel
+                            class="form-control" 
+                            required
+                            #name="ngModel">
+                            <span 
+                            class="help-block"
+                            *ngIf="!name.valid && name.touched"
+                            style="color:red;">Enter a valid Member Name</span>
+                        </div>
+                        <button type="submit" class="btn btn-success mybutton" [disabled]="!fmember.valid">Add Member</button>
+                    </form>
             </div>
         </div>
         <div class="col-lg-10">
@@ -76,6 +98,7 @@
                             <p class="list-group-item-heading pull-left">
                                 {{cards.name}}
                             </p>
+                            <button><span class="glyphicon glyphicon-trash">Delete</span></button>
                         </div>
                     </div>
                     <button (click)=showinputcard(lists.id) class="btn btn-primary">Add Card</button>
@@ -104,7 +127,7 @@
                     </div>
                     <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add List</button>
                     <button (click)="hideinput()" class="btn btn-danger mybutton"><span class="glyphicon glyphicon-remove"></span> Remove</button>
-                </form> 
+                </form>
             </div>
         </div>
         </div>
@@ -131,7 +154,7 @@
                 style="color:red;">Enter a valid Card Name</span>
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
-            <button (click)="hideinputcard()" class="btn btn-danger mybutton">
+            <button (click)="deletecard()" class="btn btn-danger mybutton">
                 <span class="glyphicon glyphicon-remove"></span> Remove
             </button>
         </form> 
@@ -183,7 +206,7 @@
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!fcard.valid">Update Details</button>
             <button (click)="hideinputcard()" class="btn btn-danger mybutton">
-                <span class="glyphicon glyphicon-remove"></span> Remove
+                <span class="glyphicon glyphicon-remove"></span> Remove Card
             </button>
         </form> 
     </div>
@@ -193,8 +216,10 @@
 <div *ngIf=showactivity class="add-card-background">
     <div class="contain-activity-board">
         <div *ngFor="let activity of activity, index as id">
-           <p>{{ activity.activity }}</p>
-           <p>{{ activity.activityTime }}</p>
+           <p>
+               <div>{{ activity.activity }}</div>
+                <div>{{ activity.activityTime }}</div>
+            
         </div>
         <button (click)="hideactivity()" class="btn btn-primary">Close</button>
     </div>

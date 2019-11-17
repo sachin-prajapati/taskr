@@ -34,6 +34,7 @@ export class BoardComponent implements OnInit {
   cardId:any; //for card update
   activity:string[]=[];
   showactivity=false;
+  boardMembers:string[]=[];
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -49,14 +50,14 @@ export class BoardComponent implements OnInit {
     this.serverservice.getBoarddetails(this.boardid)
     .subscribe(
       (response) => {
-        // console.log(response);
+        console.log(response);
         this.res=response;
         this.lists=this.res.lists;
         this.activity=this.res.activities;
+        this.boardMembers=this.res.boardMembers;
         // console.log(this.activity);
-        // console.log(this.res.lists[1].cards);
         this.bookmark=this.res.bookmark;
-        console.log(this.editBoard);
+        // console.log(this.editBoard);
         this.editBoard.setValue({
           bName:this.res.bName,
           description:this.res.description,
@@ -88,8 +89,7 @@ export class BoardComponent implements OnInit {
     this.wantaddlist=false;
   }
 
-  hideinputcard() {
-    this.wantaddcard=false;
+  deletecard() {
     this.updatecards=false;
   }
 
@@ -223,11 +223,11 @@ export class BoardComponent implements OnInit {
   }
 
   expandcard(listId,cardId,cardName,cardDescription,cardPriority) {
-    console.log(listId);
-    console.log(cardId);
-    console.log(cardName);
-    console.log(cardDescription);
-    console.log(cardPriority);
+    // console.log(listId);
+    // console.log(cardId);
+    // console.log(cardName);
+    // console.log(cardDescription);
+    // console.log(cardPriority);
     this.updatecards=true;
     this.clistId=listId;
     this.cardId=cardId;
@@ -245,6 +245,7 @@ export class BoardComponent implements OnInit {
   
 
   updatecard(form:NgForm) {
+    this.load=true;
     const value = form.value;
     this.serverservice.updateCard(value.cname,value.description,value.priority,this.boardid,this.clistId,this.cardId)
     .subscribe(
@@ -256,6 +257,24 @@ export class BoardComponent implements OnInit {
         console.log(error);
       }
     )
+
+    this.serverservice.getBoarddetails(this.boardid)
+    .subscribe(
+      (response) => {
+        // console.log(response);
+        this.res=response;
+        this.lists=this.res.lists;
+        this.activity=this.res.activities;
+        // console.log(this.activity);
+        // console.log(this.res.lists[1].cards);
+        this.bookmark=this.res.bookmark;
+        this.load=false;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+      }
+    )
   }
 
   showActivity() {
@@ -264,6 +283,42 @@ export class BoardComponent implements OnInit {
 
   hideactivity() {
     this.showactivity=false;
+  }
+
+  addmember(form:NgForm) {
+    this.load=true;
+    const value = form.value;
+    this.serverservice.addMemberToBoard(value.name,this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        form.reset();
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+        form.reset();
+      }
+    )
+
+    this.serverservice.getBoarddetails(this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res=response;
+        this.lists=this.res.lists;
+        this.activity=this.res.activities;
+        this.boardMembers=this.res.boardMembers;
+        // console.log(this.activity);
+        // console.log(this.res.lists[1].cards);
+        this.bookmark=this.res.bookmark;
+        this.load=false;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+      }
+    )
   }
 
 }
