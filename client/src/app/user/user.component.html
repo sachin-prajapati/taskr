@@ -21,6 +21,9 @@
         <div class="col-lg-3 col-md-3 col-sm-12 mx-auto">
             <h2 style="color:#173E43"><b>Welcome</b></h2>
             <h2 style="color:#3FB0AC"><b>{{name}}</b></h2>
+            <div>
+                <button (click)="showNotifications()" class="btn btn-success mybutton">Notifications</button>
+            </div>
         </div>
         <div class="row">
         <!-- <div class="col-lg-4 col-md-4 col-sm-12"> -->
@@ -92,5 +95,14 @@
         <!-- </div> -->
         </div>
     </div>
+    </div>
+</div>
+<div *ngIf=shownotifications class="add-card-background">
+    <div class="contain-activity-board">
+        <div *ngFor="let notifications of notifications, index as id">
+           <p>{{ notifications.activity }}</p>
+           <p>{{ notifications.activityTime }}</p>
+        </div>
+        <button (click)="hideNotifications()" class="btn btn-primary">Close</button>
     </div>
 </div>

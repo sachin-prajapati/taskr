@@ -61,3 +61,21 @@ input.ng-invalid.ng-touched {
     background:#DDDFD4;
     border-radius:5px;
 }
+.add-card-background {
+    position:absolute;
+    top:5rem;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.8);
+}
+.contain-activity-board {
+    position:relative;
+    left:40%;
+    background:url(../../assets/images/update-card.jpg);
+    background-size:cover;
+    color:#FFFFFF;
+    height:auto;
+    width:30rem;
+    padding:2rem 2rem;
+    border-radius:5px;
+}

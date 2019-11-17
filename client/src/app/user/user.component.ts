@@ -22,20 +22,23 @@ export class UserComponent implements OnInit {
   id:number;
   idb:any;
   load=false;
+  shownotifications=false;
+  notifications:string[]=[];
 
   constructor(private boardsservice: BoardsService,
               private serverservice: ServerService,) { }
 
   ngOnInit() {
     this.load=true;
-    this.name=localStorage.getItem('name');
     this.boards = this.boardsservice.getboards();
     this.serverservice.getUserBoards()
     .subscribe(
       (response) => {
         console.log(response);
         this.res = response;
-        this.boards = this.res;
+        this.boards = this.res.boards;
+        this.notifications=this.res.notifications;
+        this.name=this.res.fullName;
         for(this.i=0; this.i<this.boards.length; this.i++) {
           this.id = this.boards[this.i].id;
           // console.log(this.id);
@@ -79,7 +82,7 @@ export class UserComponent implements OnInit {
       (response) => {
         console.log(response);
         this.res = response;
-        this.boards = this.res;
+        this.boards = this.res.boards;
         for(this.i=0; this.i<this.boards.length; this.i++) {
           this.id = this.boards[this.i].id;
           // console.log(this.id);
@@ -99,6 +102,14 @@ export class UserComponent implements OnInit {
 
   chkid(id:number) {
     console.log(id);
+  }
+
+  showNotifications() {
+    this.shownotifications=true;
+  }
+
+  hideNotifications() {
+    this.shownotifications=false;
   }
 
 }

@@ -111,6 +111,7 @@
     </div>
     </div>
 </div>
+<!-- Add Card -->
 <div *ngIf=wantaddcard class="add-card-background">
     <div class="contain-add-card">
         <form (ngSubmit)="addcard(f)" #f="ngForm" class="addcard">
@@ -136,9 +137,10 @@
         </form> 
     </div>
 </div>
+<!-- Add Card -->
+<!-- Update Card Form -->
 <div *ngIf=updatecards class="add-card-background">
     <div class="contain-update-card">
-        <button class="btn btn-success mybutton" (click)="prepopulate()">prepopulate</button>
         <form (ngSubmit)="updatecard(fcard)" #fcard="ngForm" class="addcard">
             <div class="form-group">
                 <input 
@@ -167,20 +169,17 @@
                 type="radio"
                 name="priority"
                 value="High"
-                ngModel
-                required> High
+                ngModel> High
                 <input 
                 type="radio"
                 name="priority"
                 value="Medium"
-                ngModel
-                required> Medium
+                ngModel> Medium
                 <input 
                 type="radio"
                 name="priority"
                 value="Low"
-                ngModel
-                required> Low
+                ngModel> Low
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!fcard.valid">Update Details</button>
             <button (click)="hideinputcard()" class="btn btn-danger mybutton">
@@ -189,3 +188,15 @@
         </form> 
     </div>
 </div>
+<!-- Update Card Form -->
+<!-- Activity -->
+<div *ngIf=showactivity class="add-card-background">
+    <div class="contain-activity-board">
+        <div *ngFor="let activity of activity, index as id">
+           <p>{{ activity.activity }}</p>
+           <p>{{ activity.activityTime }}</p>
+        </div>
+        <button (click)="hideactivity()" class="btn btn-primary">Close</button>
+    </div>
+</div>
+<!-- Activity -->

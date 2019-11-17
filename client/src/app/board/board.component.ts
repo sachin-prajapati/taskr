@@ -13,7 +13,7 @@ import { Cards } from './card.model';
 })
 export class BoardComponent implements OnInit {
   @ViewChild('f', {static:false}) editBoard : NgForm;
-  // @ViewChild('fcard', {static:false}) editCard : NgForm;
+  @ViewChild('fcard', {static:false}) editCard : NgForm;
 
   lists:Lists[];
   wantaddlist=false;
@@ -32,6 +32,8 @@ export class BoardComponent implements OnInit {
   cardPriority:string;
   clistId:any; //for card update
   cardId:any; //for card update
+  activity:string[]=[];
+  showactivity=false;
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -47,11 +49,14 @@ export class BoardComponent implements OnInit {
     this.serverservice.getBoarddetails(this.boardid)
     .subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
         this.res=response;
         this.lists=this.res.lists;
-        console.log(this.res.lists[1].cards);
+        this.activity=this.res.activities;
+        // console.log(this.activity);
+        // console.log(this.res.lists[1].cards);
         this.bookmark=this.res.bookmark;
+        console.log(this.editBoard);
         this.editBoard.setValue({
           bName:this.res.bName,
           description:this.res.description,
@@ -223,13 +228,21 @@ export class BoardComponent implements OnInit {
     console.log(cardName);
     console.log(cardDescription);
     console.log(cardPriority);
+    this.updatecards=true;
     this.clistId=listId;
     this.cardId=cardId;
     this.cardName=cardName;
     this.cardDescription=cardDescription;
     this.cardPriority=cardPriority;
-    this.updatecards=true;
+    setTimeout( () => {
+      this.editCard.setValue({
+        cname:this.cardName,
+        description:this.cardDescription,
+        priority:this.cardPriority,
+      })
+    },1000)
   }
+  
 
   updatecard(form:NgForm) {
     const value = form.value;
@@ -237,32 +250,20 @@ export class BoardComponent implements OnInit {
     .subscribe(
       (response) => {
         console.log(response);
+        this.updatecards=false;
       },
       (error) => {
         console.log(error);
       }
     )
-  }
-
-  prepopulate(fcard:NgForm) {
-    console.log(fcard);
-    fcard.setValue({
-      name:this.cardName,
-      description:this.cardDescription,
-      priority:this.cardPriority,
-    })
   }
 
   showActivity() {
-    this.serverservice.getActivityboard(this.boardid)
-    .subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
+    this.showactivity=true;
+  }
+
+  hideactivity() {
+    this.showactivity=false;
   }
 
 }
