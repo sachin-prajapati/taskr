@@ -13,7 +13,7 @@ import { Cards } from './card.model';
 })
 export class BoardComponent implements OnInit {
   @ViewChild('f', {static:false}) editBoard : NgForm;
-  @ViewChild('fcard', {static:false}) editCard : NgForm;
+  // @ViewChild('fcard', {static:false}) editCard : NgForm;
 
   lists:Lists[];
   wantaddlist=false;
@@ -30,6 +30,8 @@ export class BoardComponent implements OnInit {
   cardName:string;
   cardDescription:string;
   cardPriority:string;
+  clistId:any; //for card update
+  cardId:any; //for card update
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -221,6 +223,8 @@ export class BoardComponent implements OnInit {
     console.log(cardName);
     console.log(cardDescription);
     console.log(cardPriority);
+    this.clistId=listId;
+    this.cardId=cardId;
     this.cardName=cardName;
     this.cardDescription=cardDescription;
     this.cardPriority=cardPriority;
@@ -229,14 +233,36 @@ export class BoardComponent implements OnInit {
 
   updatecard(form:NgForm) {
     const value = form.value;
+    this.serverservice.updateCard(value.cname,value.description,value.priority,this.boardid,this.clistId,this.cardId)
+    .subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 
-  prepopulate() {
-    this.editCard.setValue({
+  prepopulate(fcard:NgForm) {
+    console.log(fcard);
+    fcard.setValue({
       name:this.cardName,
       description:this.cardDescription,
       priority:this.cardPriority,
     })
+  }
+
+  showActivity() {
+    this.serverservice.getActivityboard(this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 
 }

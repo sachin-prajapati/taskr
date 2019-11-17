@@ -55,6 +55,9 @@
                                 <img src="assets/images/bookmarkadded.png" alt="bookmarkadded">
                             </button>
                         </div>
+                        <div>
+                            <button (click)="showActivity()" class="btn btn-success mybutton">Activity</button>
+                        </div>
                 </div>
             </div>
         </div>
@@ -136,7 +139,7 @@
 <div *ngIf=updatecards class="add-card-background">
     <div class="contain-update-card">
         <button class="btn btn-success mybutton" (click)="prepopulate()">prepopulate</button>
-        <form (ngSubmit)="updatecard(fcard)" #f="ngForm" class="addcard">
+        <form (ngSubmit)="updatecard(fcard)" #fcard="ngForm" class="addcard">
             <div class="form-group">
                 <input 
                 placeholder = "Enter Card Name"
@@ -179,7 +182,7 @@
                 ngModel
                 required> Low
             </div>
-            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Update Details</button>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!fcard.valid">Update Details</button>
             <button (click)="hideinputcard()" class="btn btn-danger mybutton">
                 <span class="glyphicon glyphicon-remove"></span> Remove
             </button>
