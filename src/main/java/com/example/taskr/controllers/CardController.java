@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -46,7 +47,7 @@ public class CardController {
         card.setId(list.getCards().size());
         card.setName(cardModel.getName());
         list.getCards().add(card);
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " added " + cardModel.getName() + " to " + list);
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " added " + cardModel.getName() + " to " + list.getName());
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
@@ -67,7 +68,7 @@ public class CardController {
         card.setName(updateCard.getName());
         card.setDescription(updateCard.getDescription());
         card.setPriority(updateCard.getPriority());
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " updated " + card.getName());
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " updated " + card.getName());
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
@@ -100,7 +101,7 @@ public class CardController {
                 emailSenderService.sendEmail(mailMessage);
             }
         }, delay.getSeconds(), TimeUnit.SECONDS);
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " changed the due date of " + card.getName());
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " changed the due date of " + card.getName());
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
@@ -122,7 +123,7 @@ public class CardController {
         ListCollection list = lists.get(toListId);
         List<CardCollection> cards1 = list.getCards();
         cards1.add(card);
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " moved " + card.getName() + " from " + listCollection.getName() + " to " + list.getName());
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " moved " + card.getName() + " from " + listCollection.getName() + " to " + list.getName());
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
     }
@@ -135,7 +136,7 @@ public class CardController {
             throw new RuntimeException("Only board member can delete cards");
         List<ListCollection> lists = boardCollection.getLists();
         ListCollection listCollection = lists.get(listId);
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " deleted " + listCollection.getCards().get(cardId).getName());
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " deleted " + listCollection.getCards().get(cardId).getName());
         boardCollection.getActivities().add(activity);
         listCollection.getCards().remove(cardId);
         boardRepository.save(boardCollection);
@@ -157,13 +158,13 @@ public class CardController {
         CardCollection card = listCollection.getCards().get(cardId);
         List<ChecklistItem> checklist = card.getChecklist();
         if (checklist.isEmpty()) {
-            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " added Checklist to " + card.getName());
+            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " added Checklist to " + card.getName());
             boardCollection.getActivities().add(activity);
         }
         for (ChecklistItem checklistItem : checklist) {
             if (checklistItem.getName().equals(item.getName())) {
                 if (item.isCompleted()) {
-                    ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " completed " + item.getName() + " on" + card.getName());
+                    ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " completed " + item.getName() + " on" + card.getName());
                     boardCollection.getActivities().add(activity);
                 } else {
                     boardCollection.getActivities().removeIf(activity -> (activity.getActivity().equals(userName + " completed " + item.getName() + " on " + card.getName())));
@@ -179,7 +180,6 @@ public class CardController {
         modelMap.addAttribute("message", "item added");
         return modelMap;
     }
-
 
     @PatchMapping("removeItemFromChecklist/{boardId}/{listId}/{cardId}")
     public ModelMap removeItemFromChecklist(@RequestBody ChecklistItem item, @PathVariable String boardId, @PathVariable int listId, @PathVariable int cardId) {
@@ -208,7 +208,7 @@ public class CardController {
         ListCollection listCollection = lists.get(listId);
         CardCollection card = listCollection.getCards().get(cardId);
         card.getChecklist().clear();
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " removed Checklist from " + card.getName());
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " removed Checklist from " + card.getName());
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();

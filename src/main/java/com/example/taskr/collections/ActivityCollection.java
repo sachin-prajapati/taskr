@@ -2,11 +2,10 @@ package com.example.taskr.collections;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 @Document
 public class ActivityCollection {
     private String activityOf;
-    private LocalDateTime activityTime;
+    private String activityTime;
     private String activity;
 
     public String getActivityOf() {
@@ -17,14 +16,6 @@ public class ActivityCollection {
         this.activityOf = activityOf;
     }
 
-    public LocalDateTime getActivityTime() {
-        return activityTime;
-    }
-
-    public void setActivityTime(LocalDateTime activityTime) {
-        this.activityTime = activityTime;
-    }
-
     public String getActivity() {
         return activity;
     }
@@ -33,7 +24,15 @@ public class ActivityCollection {
         this.activity = activity;
     }
 
-    public ActivityCollection(String activityOf, LocalDateTime activityTime, String activity) {
+    public String getActivityTime() {
+        return activityTime;
+    }
+
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
+    }
+
+    public ActivityCollection(String activityOf, String activityTime, String activity) {
         this.activityOf = activityOf;
         this.activityTime = activityTime;
         this.activity = activity;

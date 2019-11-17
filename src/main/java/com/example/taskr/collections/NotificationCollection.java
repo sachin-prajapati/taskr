@@ -1,13 +1,10 @@
 package com.example.taskr.collections;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDateTime;
 @Document
 public class NotificationCollection {
     private int id;
     private String notification;
-    private LocalDateTime notificationTime;
     private boolean markRead;
 
     public int getId() {
@@ -26,14 +23,6 @@ public class NotificationCollection {
         this.notification = notification;
     }
 
-    public LocalDateTime getNotificationTime() {
-        return notificationTime;
-    }
-
-    public void setNotificationTime(LocalDateTime notificationTime) {
-        this.notificationTime = notificationTime;
-    }
-
     public boolean isMarkRead() {
         return markRead;
     }
@@ -45,9 +34,8 @@ public class NotificationCollection {
     public NotificationCollection() {
     }
 
-    public NotificationCollection(int id ,String notification, LocalDateTime notificationTime) {
+    public NotificationCollection(int id ,String notification) {
         this.id=id;
         this.notification = notification;
-        this.notificationTime = notificationTime;
     }
 }

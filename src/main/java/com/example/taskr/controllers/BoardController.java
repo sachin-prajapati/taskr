@@ -73,7 +73,7 @@ public class BoardController {
             throw new RuntimeException("Only board member can update board");
         boardCollection.setbName(updateBoard.getbName());
         boardCollection.setDescription(updateBoard.getDescription());
-        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " updated this board");
+        ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " updated this board");
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
@@ -93,17 +93,16 @@ public class BoardController {
             if (members.contains(addmember.getMemberUsername()))throw new RuntimeException(addmember.getMemberUsername()+" is already a member of this board");
             members.add(addmember.getMemberUsername());
             boardCollection.setBoardMembers(members);
-            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " added "+addmember.getMemberUsername()+" to this board");
+            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " added "+addmember.getMemberUsername()+" to this board");
             boardCollection.getActivities().add(activity);
             boardRepository.save(boardCollection);
             List<String> myBoard = user.getMyBoards();
             myBoard.add(boardCollection.getId());
             user.setMyBoards(myBoard);
             List<NotificationCollection> notification=user.getNotifications();
-            String message=userName+" added you to the board at "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a"));
+            String message=userName+" added you to the board "+boardCollection.getbName()+" at "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a"));
             boardService.sendNotification(addmember.getMemberUsername(),message);
-            NotificationCollection notificationCollection=new
-                    NotificationCollection(notification.size(),message+boardCollection.getbName(),LocalDateTime.now());
+            NotificationCollection notificationCollection=new NotificationCollection(notification.size(),message);
             notification.add(notificationCollection);
             userRepository.save(user);
             ModelMap modelMap = new ModelMap();
@@ -124,19 +123,20 @@ public class BoardController {
             List<String> members = boardCollection.getBoardMembers();
             members.remove(member.getMemberUsername());
             boardCollection.setBoardMembers(members);
-            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now(), userName + " removed "+member.getMemberUsername()+" from this board");
+            ActivityCollection activity = new ActivityCollection(boardId, LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), userName + " removed "+member.getMemberUsername()+" from this board");
             boardCollection.getActivities().add(activity);
             boardRepository.save(boardCollection);
             List<String> myBoard =user.getMyBoards();
             myBoard.remove(boardCollection.getId());
             user.setMyBoards(myBoard);
             List<NotificationCollection> notification=user.getNotifications();
-            NotificationCollection notificationCollection=new
-                    NotificationCollection(notification.size(),userName+" removed you from the board "+boardCollection.getbName(),LocalDateTime.now());
+            String message=userName+" removed you from the board "+boardCollection.getbName()+" at "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a"));
+            boardService.sendNotification(member.getMemberUsername(),message);
+            NotificationCollection notificationCollection=new NotificationCollection(notification.size(),message);
             notification.add(notificationCollection);
             userRepository.save(user);
             ModelMap modelMap = new ModelMap();
-            modelMap.addAttribute("massage", member.getMemberUsername() + " removed from board as member");
+            modelMap.addAttribute("message", member.getMemberUsername() + " removed from board as member");
             return modelMap;
         } else
             throw new RuntimeException("No user exist with such username");

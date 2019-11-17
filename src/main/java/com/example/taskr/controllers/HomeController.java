@@ -2,6 +2,7 @@ package com.example.taskr.controllers;
 
 import com.example.taskr.collections.UserCollection;
 import com.example.taskr.model.response.BoardResponse;
+import com.example.taskr.model.response.UserProfile;
 import com.example.taskr.repositories.BoardRepository;
 import com.example.taskr.repositories.UserRepository;
 import org.springframework.beans.BeanUtils;
@@ -23,7 +24,7 @@ public class HomeController {
     BoardRepository boardRepository;
 
     @GetMapping("/home")
-    public List<BoardResponse> getMyBoards() {
+    public UserProfile getMyProfile() {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserCollection userCollection = userRepository.findByUserName(userName);
         List<String> boardId = userCollection.getMyBoards();
@@ -38,7 +39,10 @@ public class HomeController {
                 boardResponse.setBookmark(false);
             myBoards.add(boardResponse);
         });
-        return myBoards;
+        UserProfile profile=new UserProfile();
+        profile.setBoards(myBoards);
+        BeanUtils.copyProperties(userCollection,profile);
+        return profile;
     }
 
 }

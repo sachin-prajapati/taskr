@@ -13,6 +13,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,8 @@ public class BoardServiceImpl implements BoardService {
         ListCollection done =new ListCollection(2,"Done");
         List<ListCollection> lists=new ArrayList<>(Arrays.asList(toDo,doing,done));
         boardCollection.setLists(lists);
-        ActivityCollection activity = new ActivityCollection(boardCollection.getId(), LocalDateTime.now(), boardCollection.getMadeBy() + " created this board");
+        boardRepository.save(boardCollection);
+        ActivityCollection activity = new ActivityCollection(boardCollection.getId(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")), boardCollection.getMadeBy() + " created this board");
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
 
