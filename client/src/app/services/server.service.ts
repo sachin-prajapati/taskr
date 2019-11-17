@@ -138,8 +138,14 @@ export class ServerService {
     { headers: headers });
   }
 
-  deletecard() {
-
+  deletecard(boardid:any, listid:any, cardid:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.delete(this.rootUrl+'/api/board/deleteCard/'+boardid+'/'+listid+'/'+cardid, 
+    { headers: headers });
   }
 
 }

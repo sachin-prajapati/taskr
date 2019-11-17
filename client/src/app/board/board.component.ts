@@ -89,10 +89,6 @@ export class BoardComponent implements OnInit {
     this.wantaddlist=false;
   }
 
-  deletecard() {
-    this.updatecards=false;
-  }
-
   addlist(form:NgForm) {
     this.load=true;
     this.wantaddlist=false;
@@ -177,6 +173,10 @@ export class BoardComponent implements OnInit {
     this.adddesc = false;
   }
 
+  hidecardinput() {
+    this.wantaddcard=false;
+  }
+
   updatedetailsboard(form:NgForm) {
     this.load=true;
     const value = form.value;
@@ -241,6 +241,39 @@ export class BoardComponent implements OnInit {
         priority:this.cardPriority,
       })
     },1000)
+  }
+
+  deletecard() {
+    this.load=true;
+    this.serverservice.deletecard(this.boardid,this.clistId,this.cardId)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.updatecards=false;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+      }
+    )
+
+    this.serverservice.getBoarddetails(this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res=response;
+        this.lists=this.res.lists;
+        this.activity=this.res.activities;
+        this.boardMembers=this.res.boardMembers;
+        // console.log(this.activity);
+        this.bookmark=this.res.bookmark;
+        this.load=false;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+      }
+    )
   }
   
 

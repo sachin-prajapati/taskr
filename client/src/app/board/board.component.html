@@ -98,7 +98,6 @@
                             <p class="list-group-item-heading pull-left">
                                 {{cards.name}}
                             </p>
-                            <button><span class="glyphicon glyphicon-trash">Delete</span></button>
                         </div>
                     </div>
                     <button (click)=showinputcard(lists.id) class="btn btn-primary">Add Card</button>
@@ -154,7 +153,7 @@
                 style="color:red;">Enter a valid Card Name</span>
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
-            <button (click)="deletecard()" class="btn btn-danger mybutton">
+            <button (click)="hidecardinput()" class="btn btn-danger mybutton">
                 <span class="glyphicon glyphicon-remove"></span> Remove
             </button>
         </form> 
@@ -205,8 +204,8 @@
                 ngModel> Low
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!fcard.valid">Update Details</button>
-            <button (click)="hideinputcard()" class="btn btn-danger mybutton">
-                <span class="glyphicon glyphicon-remove"></span> Remove Card
+            <button (click)="deletecard()" class="btn btn-danger mybutton">
+                Remove Card
             </button>
         </form> 
     </div>
