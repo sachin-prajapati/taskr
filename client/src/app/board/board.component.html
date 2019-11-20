@@ -1,3 +1,4 @@
+<!-- loader -->
 <div *ngIf=load class="background">
     <div class="loader">
         <div class="loader-circle">
@@ -11,6 +12,7 @@
         </div>
     </div>
 </div>
+<!-- loader -->
 <div class="container-fluid all">
     <div class="row">
         <div class="col-lg-2 update-coloumn">
@@ -68,16 +70,12 @@
                             <input 
                             placeholder = "Username"
                             type="text"
-                            id="name" 
+                            id="name"
                             name="name"
                             ngModel
-                            class="form-control" 
-                            required
+                            class="form-control"
+                            required 
                             #name="ngModel">
-                            <span 
-                            class="help-block"
-                            *ngIf="!name.valid && name.touched"
-                            style="color:red;">Enter a valid Member Name</span>
                         </div>
                         <button type="submit" class="btn btn-success mybutton" [disabled]="!fmember.valid">Add Member</button>
                     </form>
@@ -94,18 +92,21 @@
                         </h4>
                     </div>
                     <div *ngFor="let cards of lists.cards, index as id">
-                        <div class="list-group-item" (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority)>
-                            <p class="list-group-item-heading pull-left">
+                        <div class="list-group-item list-card" (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)>
+                            <p class="list-group-item-heading text-center">
                                 {{cards.name}}
+                            </p>
+                            <p>
+                                Due Date : {{cards.dueDateShow}}
                             </p>
                         </div>
                     </div>
-                    <button (click)=showinputcard(lists.id) class="btn btn-primary">Add Card</button>
+                    <button (click)=showinputcard(lists.id) class="mx-auto add-card">Add Card</button>
                 </div>
             </div>
             <div class="list-group-item boxadd">
             <div *ngIf=!wantaddlist class="addlist">
-                <button (click)=showinput() class="btn btn-primary">Add Another List</button>
+                <button (click)=showinput() class="btn btn-primary add-list">Add Another List</button>
             </div>
             <div *ngIf=wantaddlist>
                 <form (ngSubmit)="addlist(f)" #f="ngForm">
@@ -154,7 +155,7 @@
             </div>
             <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
             <button (click)="hidecardinput()" class="btn btn-danger mybutton">
-                <span class="glyphicon glyphicon-remove"></span> Remove
+                <span class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </form> 
     </div>
@@ -171,7 +172,7 @@
                 id="cname"
                 name="cname"
                 ngModel
-                class="form-control" 
+                class="form-control input-field"
                 required
                 #cname="ngModel">
                 <span 
@@ -185,7 +186,7 @@
                 id="description"
                 name="description"
                 ngModel
-                class="form-control"></textarea>
+                class="form-control input-field"></textarea>
                 <label for="priority">Task Priority</label>
                 <input 
                 type="radio"
@@ -207,13 +208,57 @@
             <button (click)="deletecard()" class="btn btn-danger mybutton">
                 Remove Card
             </button>
-        </form> 
+        </form>
+        <form (ngSubmit)="cardduedate(fcardduedate)" #fcardduedate="ngForm" class="setduedate">
+            <label for="duedate">Set Due Date</label>   
+            <div class="form-group">
+                <input 
+                placeholder = "Enter Card Name"
+                type="date"
+                id="dueDate"
+                name="dueDate"
+                ngModel
+                class="form-control input-field"
+                required
+                #duedate="ngModel">
+                <input 
+                placeholder = "Remind Before"
+                type="time"
+                id="dueTime"
+                name="dueTime"
+                ngModel
+                class="form-control input-field"
+                required
+                #remindbefore="ngModel">
+                <label for="priority">Remind before</label>
+                <input 
+                type="radio"
+                name="reminderBefore"
+                value=15
+                ngModel> 15 min
+                <input 
+                type="radio"
+                name="reminderBefore"
+                value=30
+                ngModel> 30 min
+                <input 
+                type="radio"
+                name="reminderBefore"
+                value=60
+                ngModel> 1 Hour
+            </div>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!fcardduedate.valid">Set Due Date</button>
+        </form>
     </div>
 </div>
 <!-- Update Card Form -->
 <!-- Activity -->
 <div *ngIf=showactivity class="add-card-background">
     <div class="contain-activity-board">
+        <div class="pull-right">
+            <!-- <i class="fas fa-check-circle fa-5x"></i> -->
+            <i class="fa fa-american-sign-language-interpreting"> </i>  
+        </div>
         <div *ngFor="let activity of activity, index as id">
            <p>
                <div>{{ activity.activity }}</div>
@@ -224,3 +269,20 @@
     </div>
 </div>
 <!-- Activity -->
+
+<!-- error -->
+<div *ngIf=error class="popup-background">
+    <div class="contain-popup">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- <img src="assets/images/error.png" class="img-fluid" alt="error"> -->
+            </div>
+            <div class="col-md-7">
+                <h3 class="text-center err-heading">Oops!!</h3>
+                <p class="errormsg">{{errorMsg}}</p>
+                <button class="ok" (click)=ok()>OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- error -->

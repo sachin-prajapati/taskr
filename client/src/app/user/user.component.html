@@ -18,7 +18,7 @@
 <!-- Loader -->
 <div class="container-fluid user">
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 mx-auto">
+        <div class="col-lg-3 col-md-3 col-sm-12">
             <h2 style="color:#173E43"><b>Welcome</b></h2>
             <h2 style="color:#3FB0AC"><b>{{name}}</b></h2>
             <div>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-        <!-- <div class="col-lg-4 col-md-4 col-sm-12"> -->
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <div><h5><b>Boards</b></h5></div>
             <div *ngFor="let boards of boards; index as id">
                 <div *ngIf=!boards.bookmark>
@@ -70,11 +70,11 @@
                     </form>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
         </div>
         <div class="container-fluid">
         <div class="row">
-        <!-- <div class="col-lg-5"> -->
+        <div class="col-lg-5">
             <div><h5><b>Favourites</b></h5></div>
             <div *ngFor="let boards of boards; index as id">
                 <div *ngIf=boards.bookmark>
@@ -92,7 +92,7 @@
                 </a>
             </div>
             </div>
-        <!-- </div> -->
+        </div>
         </div>
     </div>
     </div>

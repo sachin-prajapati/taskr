@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://b17900b7.ngrok.io";
+  private rootUrl = "https://1d431fb2.ngrok.io";
   
   constructor(private http: HttpClient) { }
 
@@ -145,6 +145,16 @@ export class ServerService {
       'Authorization': `Bearer `+token,
     })
     return this.http.delete(this.rootUrl+'/api/board/deleteCard/'+boardid+'/'+listid+'/'+cardid, 
+    { headers: headers });
+  }
+
+  setduedate(dueDate:any, dueTime:any, reminderBefore:any, boardid:any, listid:any, cardid:any) {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer `+token,
+    })
+    return this.http.put(this.rootUrl+'/api/board/setDueDate/'+boardid+'/'+listid+'/'+cardid, JSON.stringify({dueDate,dueTime,reminderBefore}), 
     { headers: headers });
   }
 

@@ -14,6 +14,7 @@ import { Cards } from './card.model';
 export class BoardComponent implements OnInit {
   @ViewChild('f', {static:false}) editBoard : NgForm;
   @ViewChild('fcard', {static:false}) editCard : NgForm;
+  @ViewChild('fcardduedate', {static:false}) editDueDate : NgForm;
 
   lists:Lists[];
   wantaddlist=false;
@@ -35,6 +36,12 @@ export class BoardComponent implements OnInit {
   activity:string[]=[];
   showactivity=false;
   boardMembers:string[]=[];
+  error=false;
+  carddueDate:string;
+  carddueTime:string;
+  cardreminderBefore:string;
+  err:any;
+  errorMsg:any;
 
   constructor(private listsservice:ListService,
               // private cardsservice:CardService,
@@ -67,6 +74,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
   }
@@ -102,6 +110,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
 
@@ -122,6 +131,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
 
@@ -141,6 +151,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
 
@@ -161,6 +172,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
   }
@@ -190,6 +202,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       },
     )
   }
@@ -204,6 +217,7 @@ export class BoardComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.error=true;
       },
     )
   }
@@ -218,11 +232,12 @@ export class BoardComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.error=true;
       },
     )
   }
 
-  expandcard(listId,cardId,cardName,cardDescription,cardPriority) {
+  expandcard(listId,cardId,cardName,cardDescription,cardPriority,carddueDate,carddueTime,cardreminderBefore) {
     // console.log(listId);
     // console.log(cardId);
     // console.log(cardName);
@@ -234,11 +249,22 @@ export class BoardComponent implements OnInit {
     this.cardName=cardName;
     this.cardDescription=cardDescription;
     this.cardPriority=cardPriority;
+    this.carddueDate=carddueDate;
+    this.carddueTime=carddueTime;
+    this.cardreminderBefore=cardreminderBefore;
     setTimeout( () => {
       this.editCard.setValue({
         cname:this.cardName,
         description:this.cardDescription,
         priority:this.cardPriority,
+      })
+    },1000);
+
+    setTimeout( () => {
+      this.editDueDate.setValue({
+        dueDate:this.carddueDate,
+        dueTime:this.carddueTime,
+        reminderBefore:this.cardreminderBefore,
       })
     },1000)
   }
@@ -254,6 +280,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
 
@@ -272,6 +299,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
   }
@@ -288,6 +316,7 @@ export class BoardComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.error=true;
       }
     )
 
@@ -306,6 +335,7 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
   }
@@ -331,6 +361,9 @@ export class BoardComponent implements OnInit {
         console.log(error);
         this.load=false;
         form.reset();
+        this.err=error;
+        this.errorMsg=this.err.error.message;
+        this.error=true;
       }
     )
 
@@ -350,8 +383,27 @@ export class BoardComponent implements OnInit {
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
+  }
+
+  cardduedate(form:NgForm) {
+    const value = form.value;
+    console.log(value)
+    this.serverservice.setduedate(value.dueDate,value.dueTime,value.reminderBefore,this.boardid,this.clistId,this.cardId)
+    .subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      },
+    )
+  }
+
+  ok() {
+    this.error=false;
   }
 
 }
