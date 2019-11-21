@@ -37,6 +37,7 @@ export class BoardComponent implements OnInit {
   showactivity=false;
   boardMembers:string[]=[];
   error=false;
+  success=false;
   carddueDate:string;
   carddueTime:string;
   cardreminderBefore:string;
@@ -198,6 +199,7 @@ export class BoardComponent implements OnInit {
       (response) => {
         console.log(response);
         this.load=false;
+        this.success=true;
       },
       (error) => {
         console.log(error);
@@ -312,7 +314,7 @@ export class BoardComponent implements OnInit {
     .subscribe(
       (response) => {
         console.log(response);
-        this.updatecards=false;
+        this.success=true;
       },
       (error) => {
         console.log(error);
@@ -379,6 +381,7 @@ export class BoardComponent implements OnInit {
         // console.log(this.res.lists[1].cards);
         this.bookmark=this.res.bookmark;
         this.load=false;
+        this.success=true;
       },
       (error) => {
         console.log(error);
@@ -389,6 +392,7 @@ export class BoardComponent implements OnInit {
   }
 
   cardduedate(form:NgForm) {
+    this.load=true;
     const value = form.value;
     console.log(value)
     this.serverservice.setduedate(value.dueDate,value.dueTime,value.reminderBefore,this.boardid,this.clistId,this.cardId)
@@ -398,12 +402,40 @@ export class BoardComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.load=false;
+        this.error=true;
       },
+    )
+
+    this.serverservice.getBoarddetails(this.boardid)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.res=response;
+        this.lists=this.res.lists;
+        this.activity=this.res.activities;
+        this.boardMembers=this.res.boardMembers;
+        // console.log(this.activity);
+        // console.log(this.res.lists[1].cards);
+        this.bookmark=this.res.bookmark;
+        this.load=false;
+        this.success=true;
+      },
+      (error) => {
+        console.log(error);
+        this.load=false;
+        this.error=true;
+      }
     )
   }
 
   ok() {
     this.error=false;
+    this.success=false;
+  }
+
+  closecard() {
+    this.updatecards=false;
   }
 
 }

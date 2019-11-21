@@ -4,7 +4,7 @@ input.ng-invalid.ng-touched {
 /* Loader */
 .background {
     position:absolute;
-    height:100vh;
+    height:87.5vh;
     width:100%;
     background:rgba(0,0,0,0.5);
     z-index:2;
@@ -51,12 +51,78 @@ input.ng-invalid.ng-touched {
 /* Handle on hover */
 .all::-webkit-scrollbar-thumb:hover {
     background: #000000; 
-}     
+}
+/* Scrollbar */
+/* width */
+.update::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.update::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 2px;
+}
+
+/* Handle */
+.update::-webkit-scrollbar-thumb {
+    background: #696969; 
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+.update::-webkit-scrollbar-thumb:hover {
+    background: #000000; 
+}
+/* Scrollbar */
+/* width */
+.contain-notification-board::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.contain-notification-board::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 2px;
+}
+
+/* Handle */
+.contain-notification-board::-webkit-scrollbar-thumb {
+    background: #696969; 
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+.contain-notification-board::-webkit-scrollbar-thumb:hover {
+    background: #000000; 
+}
+/* Scrollbar */
+/* width */
+.contain-update-card::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.contain-update-card::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 2px;
+}
+
+/* Handle */
+.contain-update-card::-webkit-scrollbar-thumb {
+    background: #696969; 
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+.contain-update-card::-webkit-scrollbar-thumb:hover {
+    background: #000000; 
+}
 /* Scrollbar */
 .all {
     height:87.5vh;
     overflow:auto;
-    background:url(../../assets/images/boardbg.jpg);
+    background:url(../../assets/images/boardbg.png);
     background-size:cover;
 }
 .box {
@@ -64,6 +130,12 @@ input.ng-invalid.ng-touched {
     margin-bottom:1rem;
     width:15rem;
     margin:1rem;
+    border:0px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+.box:hover {
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    transition:all 0.4s ease-in-out;
 }
 .boxadd {
     background-color:#DDDFD4;
@@ -72,12 +144,20 @@ input.ng-invalid.ng-touched {
     border-radius:5px;
     width:15rem;
     margin:1rem;
+    border:0px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+.box:hover {
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    transition:all 0.4s ease-in-out;
 }
 .listname {
-    color:black;
+    color:#000000;
+    font-family: 'Raleway', sans-serif;
 }
 .update-coloumn {
     padding:0px 0px ;
+    font-family: 'Montserrat', sans-serif;
 }
 .update {
     position:fixed;
@@ -86,24 +166,65 @@ input.ng-invalid.ng-touched {
     height:87.5vh;
     width:13rem;
     padding:15px 25px;
-    background-color:rgba(255,255,255,0.5);
+    background-color:rgba(23, 62, 67, 0.5);
+}
+.update-card-button {
+    background:linear-gradient(40deg,#45cafc,#303f9f)!important;
+    border-radius:10em;
+    border:0px;
+    margin:10px 0rem;
+    padding:10px 30px;
+    color:#FFFFFF;
+    box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
+}
+.update-card-button:focus {
+    outline:none;
 }
 .bookmark {
     border: 0px;
     background-color:transparent;
+    margin-left:3rem;
+    padding:18px;
 }
 .bookmark:focus {
     outline:none;
 }
+.member-box {
+    background-color:#FFFFFF;
+    text-align:center;
+    border-radius:5px;
+    margin:10px 0px;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    cursor:pointer;
+}
+.member-box:hover {
+    background-color:#F7F7F7;
+    transition:0.2s;
+}
 .contain-add-card {
     position:relative;
-    left:40%;
-    background:url(../../assets/images/add-card.jpg);
+    top:20%;
+    left:35%;
+    background:url(../../assets/images/addcard.png);
     background-size:cover;
-    height:10rem;
-    width:20rem;
-    padding:2rem 2rem;
+    height:20rem;
+    width:28rem;
+    padding:2rem 5rem;
     border-radius:5px;
+    animation:appearcard 1s 1;
+}
+@keyframes appearcard {
+    from{
+        transform:scale(0);
+        left:-45%;
+    }
+    to{
+        transform:scale(1);
+        left:35%;
+    };
+}
+.cardname {
+    border-left:5px solid #173E43 !important;
 }
 .add-card-background {
     position:absolute;
@@ -115,6 +236,7 @@ input.ng-invalid.ng-touched {
 .contain-update-card {
     position:relative;
     left:40%;
+    top:8%;
     overflow:auto;
     background:url(../../assets/images/update-card.jpg);
     background-size:cover;
@@ -123,6 +245,7 @@ input.ng-invalid.ng-touched {
     width:25rem;
     padding:2rem 2rem;
     border-radius:5px;
+    animation:appear 0.5s 1;
 }
 .contain-activity-board {
     position:relative;
@@ -136,9 +259,30 @@ input.ng-invalid.ng-touched {
     padding:2rem 2rem;
     border-radius:5px;
 }
+.contain-notification-board {
+    position:relative;
+    left:40%;
+    top:8%;
+    background:url(../../assets/images/activity.png);
+    background-size:cover;
+    font-family: 'Montserrat', sans-serif;
+    color:#000000;
+    overflow:auto;
+    height:30rem;
+    width:30rem;
+    padding:2rem 2rem;
+    border-radius:5px;
+    animation: appear 0.5s 1;
+}
+.time {
+    font-size:12px;
+}
 .list-card {
     box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
     margin-bottom:1rem;
+    font-family: 'Poppins', sans-serif;
+    cursor:pointer;
+    border:0px;
 }
 .list-card:hover {
     background-color:#F8F8F8;
@@ -153,15 +297,47 @@ input.ng-invalid.ng-touched {
     color:#FFFFFF;
     box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
 }
+.add-card:focus {
+    outline:none;
+}
 .add-card:hover {
     transform:translateX(0.5rem);
     box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     transition:all 0.5s ease-in-out;
 }
+.mybutton {
+    background:linear-gradient(40deg,#697CE0,#7681EF);
+    border:0px;
+    color:#FFFFFF;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding:8px 16px;
+    margin-left:40px;
+    box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
+}
+.mybutton:hover {
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    transition:all 0.3s ease-in-out;
+}
+.mybuttoncancel:hover {
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    transition:all 0.3s ease-in-out;
+}
+.mybuttoncancel {
+    background:linear-gradient(40deg,#F31713,#F74B4E);
+    border:0px;
+    color:#FFFFFF;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding:8px 16px;
+    margin-left:10px;
+    box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
+}
 .add-list {
     border:0px;
     background-color: rgba(0,0,0,.08);
     color:#4B4B4B;
+    margin-top:15px;
     padding:25px 40px;
     box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.2);
 }
@@ -176,6 +352,16 @@ input.ng-invalid.ng-touched {
 .setduedate {
     margin-top:1rem;
 }
+.due-button {
+    border:0;
+    background-color:#3FB0AC;
+    font-size:12px;
+    color:#FFFFFF;
+    border-radius:5px;
+    padding:5px;
+    margin-left:15px;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
 /* Popup */
 .popup-background {
     position:absolute;
@@ -184,6 +370,7 @@ input.ng-invalid.ng-touched {
     height:87.5vh;
     background-color:rgba(0,0,0,0.7);
 }
+/* error */
 .contain-popup {
     position:relative;
     top:25%;
@@ -225,4 +412,36 @@ input.ng-invalid.ng-touched {
     from{transform:scale(0);}
     to{transform:scale(1);};
 }
+/* error */
+/* success */
+.contain-popup-success {
+    position:relative;
+    top:25%;
+    left:35%;
+    background:url(../../assets/images/success.png);
+    background-size:cover;
+    color:#FFFFFF;
+    overflow:auto;
+    height:17rem;
+    width:25rem;
+    padding:2rem 2rem;
+    border-radius:5px;
+    animation: appear 0.5s 1;
+}
+.ok-success {
+    border:0;
+    padding:0px 15px;
+    background-color:#173E43;
+    border-radius:2px;
+    margin-top:11rem;
+    margin-left:9rem;
+    color:#FFFFFF;
+    box-shadow: 2px 2px 10px 2px rgba(0,0,0,0.2);
+}
+.ok-success:hover {
+    background-color:#29747D;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    transition:all 0.3s ease-in-out;
+}
+/* success */
 /* Popup */

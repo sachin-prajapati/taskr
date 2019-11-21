@@ -1,3 +1,6 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Raleway|Roboto&display=swap');
+</style>
 <!-- loader -->
 <div *ngIf=load class="background">
     <div class="loader">
@@ -13,6 +16,7 @@
     </div>
 </div>
 <!-- loader -->
+<!-- Update -->
 <div class="container-fluid all">
     <div class="row">
         <div class="col-lg-2 update-coloumn">
@@ -44,9 +48,10 @@
                             class="form-control"></textarea>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Update Board</button>
+                            <button type="submit" class="btn btn-success update-card-button" [disabled]="!f.valid">Update Board</button>
                         </div>
                     </form>
+                    <!-- Bookmark -->
                         <div *ngIf=!bookmark>
                             <button class="bookmark" (click)="addbookmark()">
                                 <img src="assets/images/bookmark.png" alt="bookmark">
@@ -57,30 +62,33 @@
                                 <img src="assets/images/bookmarkadded.png" alt="bookmarkadded">
                             </button>
                         </div>
+                        <!-- Bookmark -->
                         <div>
-                            <button (click)="showActivity()" class="btn btn-success mybutton">Activity</button>
+                            <button (click)="showActivity()" class="btn btn-success update-card-button">Board Activity</button>
                         </div>
                 </div>
                 <h6>Board Members</h6>
                 <div *ngFor="let memberName of boardMembers, index as id">
-                    <p>{{memberName}}</p>
+                    <div class="member-box">{{memberName}}</div>
                 </div>
                 <form (ngSubmit)="addmember(fmember)" #fmember="ngForm">
-                        <div class="form-group">
-                            <input 
-                            placeholder = "Username"
-                            type="text"
-                            id="name"
-                            name="name"
-                            ngModel
-                            class="form-control"
-                            required 
-                            #name="ngModel">
-                        </div>
-                        <button type="submit" class="btn btn-success mybutton" [disabled]="!fmember.valid">Add Member</button>
-                    </form>
+                    <div class="form-group">
+                        <input 
+                        placeholder = "Username"
+                        type="text"
+                        id="name"
+                        name="name"
+                        ngModel
+                        class="form-control"
+                        required 
+                        #name="ngModel">
+                    </div>
+                    <button type="submit" class="btn btn-success update-card-button" [disabled]="!fmember.valid">Add Member</button>
+                </form>
             </div>
         </div>
+        <!-- Update -->
+        <!-- Lists -->
         <div class="col-lg-10">
             <div class="row">
             <div style="margin-bottom:1rem;" *ngFor="let lists of lists, index as id">
@@ -92,13 +100,51 @@
                         </h4>
                     </div>
                     <div *ngFor="let cards of lists.cards, index as id">
-                        <div class="list-group-item list-card" (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)>
-                            <p class="list-group-item-heading text-center">
-                                {{cards.name}}
-                            </p>
-                            <p>
-                                Due Date : {{cards.dueDateShow}}
-                            </p>
+                        <div *ngIf="cards.priority === 'High'">
+                            <div class="list-group-item list-card" 
+                            (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)
+                            style="background-color:#FE2D2D;">
+                                <div class="list-group-item-heading text-center">
+                                    {{cards.name}}
+                                </div>
+                                <div *ngIf="cards.dueDateShow">
+                                    <button class="due-button">{{cards.dueDateShow}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="cards.priority === 'Medium'">
+                            <div class="list-group-item list-card" 
+                            (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)
+                            style="background-color:#F3FF33;">
+                                <div class="list-group-item-heading text-center">
+                                    {{cards.name}}
+                                </div>
+                                <div *ngIf="cards.dueDateShow">
+                                    <button class="due-button">{{cards.dueDateShow}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="cards.priority === 'Low'">
+                            <div class="list-group-item list-card" 
+                            (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)
+                            style="background-color:#33FF38;">
+                                <div class="list-group-item-heading text-center">
+                                    {{cards.name}}
+                                </div>
+                                <div *ngIf="cards.dueDateShow">
+                                    <button class="due-button">{{cards.dueDateShow}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="cards.priority === null">
+                            <div class="list-group-item list-card" (click)=expandcard(lists.id,cards.id,cards.name,cards.description,cards.priority,cards.dueDate,cards.dueTime,cards.reminderBefore)>
+                                <div class="list-group-item-heading text-center">
+                                    {{cards.name}}
+                                </div>
+                                <div *ngIf="cards.dueDateShow">
+                                    <button class="due-button">{{cards.dueDateShow}}</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button (click)=showinputcard(lists.id) class="mx-auto add-card">Add Card</button>
@@ -145,7 +191,7 @@
                 id="cname"
                 name="cname"
                 ngModel
-                class="form-control" 
+                class="form-control cardname" 
                 required
                 #cname="ngModel">
                 <span 
@@ -153,10 +199,8 @@
                 *ngIf="!cname.valid && cname.touched"
                 style="color:red;">Enter a valid Card Name</span>
             </div>
-            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">Add Card</button>
-            <button (click)="hidecardinput()" class="btn btn-danger mybutton">
-                <span class="glyphicon glyphicon-remove"></span> Cancel
-            </button>
+            <button type="submit" class="mybutton" [disabled]="!f.valid">Add Card</button>
+            <button (click)="hidecardinput()" class="mybuttoncancel">Cancel</button>
         </form> 
     </div>
 </div>
@@ -204,9 +248,9 @@
                 value="Low"
                 ngModel> Low
             </div>
-            <button type="submit" class="btn btn-success mybutton" [disabled]="!fcard.valid">Update Details</button>
-            <button (click)="deletecard()" class="btn btn-danger mybutton">
-                Remove Card
+            <button type="submit" class="btn btn-success" [disabled]="!fcard.valid">Update Details</button>
+            <button (click)="deletecard()" class="btn btn-danger">
+                Delete Card
             </button>
         </form>
         <form (ngSubmit)="cardduedate(fcardduedate)" #fcardduedate="ngForm" class="setduedate">
@@ -247,25 +291,22 @@
                 value=60
                 ngModel> 1 Hour
             </div>
-            <button type="submit" class="btn btn-success mybutton" [disabled]="!fcardduedate.valid">Set Due Date</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!fcardduedate.valid">Set Due Date</button>
         </form>
+        <button class="update-card-button" (click)=closecard()>Close</button>
     </div>
 </div>
 <!-- Update Card Form -->
 <!-- Activity -->
 <div *ngIf=showactivity class="add-card-background">
-    <div class="contain-activity-board">
-        <div class="pull-right">
-            <!-- <i class="fas fa-check-circle fa-5x"></i> -->
-            <i class="fa fa-american-sign-language-interpreting"> </i>  
-        </div>
+    <div class="contain-notification-board">
+        <h3 class="text-center text-uppercase" style="color:#173E43;">Activity</h3>
         <div *ngFor="let activity of activity, index as id">
            <p>
-               <div>{{ activity.activity }}</div>
-                <div>{{ activity.activityTime }}</div>
-            
+               <div><b>{{ activity.activity }}</b></div>
+                <div class="time">{{ activity.activityTime }}</div>
         </div>
-        <button (click)="hideactivity()" class="btn btn-primary">Close</button>
+        <button (click)="hideactivity()" class="update-card-button">Close</button>
     </div>
 </div>
 <!-- Activity -->
@@ -286,3 +327,14 @@
     </div>
 </div>
 <!-- error -->
+<!-- success -->
+<div *ngIf=success class="popup-background">
+    <div class="contain-popup-success">
+        <div class="row">
+            <div class="col-md-5">
+                <button class="ok-success" (click)=ok()>OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- success -->

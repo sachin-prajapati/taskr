@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
-  private rootUrl = "https://1d431fb2.ngrok.io";
+  private rootUrl = "https://4b14fb64.ngrok.io";
   
   constructor(private http: HttpClient) { }
 

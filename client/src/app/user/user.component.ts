@@ -22,6 +22,8 @@ export class UserComponent implements OnInit {
   id:number;
   idb:any;
   load=false;
+  error=false;
+  success=false;
   shownotifications=false;
   notifications:string[]=[];
 
@@ -70,10 +72,12 @@ export class UserComponent implements OnInit {
       (response) => {
         console.log(response);
         this.boards.push(value);
+        
       },
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       }
     )
 
@@ -92,10 +96,12 @@ export class UserComponent implements OnInit {
           }
         }
         this.load=false;
+        this.success=true;
       },
       (error) => {
         console.log(error);
         this.load=false;
+        this.error=true;
       },
     )
   }
@@ -110,6 +116,11 @@ export class UserComponent implements OnInit {
 
   hideNotifications() {
     this.shownotifications=false;
+  }
+
+  ok() {
+    this.error=false;
+    this.success=false;
   }
 
 }
