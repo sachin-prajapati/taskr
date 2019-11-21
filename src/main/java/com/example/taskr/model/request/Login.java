@@ -1,7 +1,12 @@
 package com.example.taskr.model.request;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 public class Login {
+    @Email(message = "enter valid email address")
     private String email;
+    @Size(min = 7)
     private String password;
 
     public String getEmail() {

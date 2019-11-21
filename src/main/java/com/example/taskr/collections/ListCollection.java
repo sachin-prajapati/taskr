@@ -3,12 +3,14 @@ package com.example.taskr.collections;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 @Document
 public class ListCollection {
     @Id
     private int id;
+    @NotEmpty(message = "name can't be empty.")
     private String name;
     private List<CardCollection> cards=new ArrayList<>();
 

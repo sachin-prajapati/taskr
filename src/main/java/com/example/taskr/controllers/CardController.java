@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,9 +35,8 @@ public class CardController {
     @Autowired
     EmailSenderService emailSenderService;
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-
     @PostMapping("addCard/{boardId}/{listId}")
-    public ModelMap addCard(@PathVariable String boardId, @PathVariable int listId, @RequestBody ListDetailRequestModel cardModel) {
+    public ModelMap addCard(@PathVariable String boardId, @PathVariable int listId, @Valid @RequestBody ListDetailRequestModel cardModel) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -51,12 +51,12 @@ public class CardController {
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("massage", "card added to list");
+        modelMap.addAttribute("message", "card added to list");
         return modelMap;
     }
 
     @PatchMapping("updateCard/{boardId}/{listId}/{cardId}")
-    public ModelMap updateCard(@PathVariable String boardId, @PathVariable int cardId, @PathVariable int listId, @RequestBody UpdateCard updateCard) {
+    public ModelMap updateCard(@PathVariable String boardId, @PathVariable int cardId, @PathVariable int listId,@Valid @RequestBody UpdateCard updateCard) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -77,7 +77,7 @@ public class CardController {
     }
 
     @PutMapping("setDueDate/{boardId}/{listId}/{cardId}")
-    public ModelMap setDueDate(@PathVariable String boardId, @PathVariable int cardId, @PathVariable int listId, @RequestBody ChangeDueDate changeDueDate) {
+    public ModelMap setDueDate(@PathVariable String boardId, @PathVariable int cardId, @PathVariable int listId,@Valid @RequestBody ChangeDueDate changeDueDate) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -86,9 +86,12 @@ public class CardController {
         ListCollection listCollection = lists.get(listId);
         List<CardCollection> cards = listCollection.getCards();
         CardCollection card = cards.get(cardId);
-        card.setDueDate(LocalDateTime.parse(changeDueDate.getDueDate()));
-        Duration delay = Duration.between(LocalDateTime.parse(changeDueDate.getDueDate()).minusMinutes(changeDueDate.getReminderBefore()), LocalDateTime.now());
-        String message = userName + " changed the due date of " + card.getName();
+        card.setDueDate(changeDueDate.getDueDate());
+        card.setDueTime(changeDueDate.getDueTime());
+        card.setReminderBefore(changeDueDate.getReminderBefore());
+        card.setDueDateShow(changeDueDate.getDueDateShow().format(DateTimeFormatter.ofPattern("d MMM uuuu , hh:mm a")));
+        Duration delay = Duration.between((changeDueDate.getDueDateShow().minusMinutes(changeDueDate.getReminderBefore())), LocalDateTime.now());
+        String message ="The due date of " + card.getName()+" was "+changeDueDate.getDueDateShow()+" It is about to be overdue, complete your task soon.";
         scheduler.schedule(() -> {
             List<String> boardMembers = boardCollection.getBoardMembers();
             for (String userName1 : boardMembers) {
@@ -146,7 +149,7 @@ public class CardController {
     }
 
     @PatchMapping("addItemToChecklist/{boardId}/{listId}/{cardId}")
-    public ModelMap addItemTOChecklist(@RequestBody ChecklistItem item, @PathVariable String boardId, @PathVariable int listId, @PathVariable int cardId) {
+    public ModelMap addItemTOChecklist(@Valid@RequestBody ChecklistItem item, @PathVariable String boardId, @PathVariable int listId, @PathVariable int cardId) {
         boolean contained = false;
         ModelMap modelMap = new ModelMap();
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -182,7 +185,7 @@ public class CardController {
     }
 
     @PatchMapping("removeItemFromChecklist/{boardId}/{listId}/{cardId}")
-    public ModelMap removeItemFromChecklist(@RequestBody ChecklistItem item, @PathVariable String boardId, @PathVariable int listId, @PathVariable int cardId) {
+    public ModelMap removeItemFromChecklist(@Valid@RequestBody ChecklistItem item, @PathVariable String boardId, @PathVariable int listId, @PathVariable int cardId) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))

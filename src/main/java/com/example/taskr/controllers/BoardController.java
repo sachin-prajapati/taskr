@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -27,7 +28,7 @@ public class BoardController {
     BoardRepository boardRepository;
 
     @PostMapping("/create")
-    public ModelMap createBoard(@RequestBody BoardDetailRequestModel board) {
+    public ModelMap createBoard(@Valid @RequestBody BoardDetailRequestModel board) {
         BoardCollection boardCollection = new BoardCollection();
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserCollection userCollection = userRepository.findByUserName(userName);
@@ -43,7 +44,7 @@ public class BoardController {
         userRepository.save(userCollection);
 
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("massage", "board created with board name '" + board.getbName() + "' ");
+        modelMap.addAttribute("message", "board created with board name '" + board.getbName() + "' ");
         return modelMap;
     }
 
@@ -66,7 +67,7 @@ public class BoardController {
     }
 
     @PatchMapping("/update/{boardId}")
-    public ModelMap updateBoard(@RequestBody UpdateBoard updateBoard, @PathVariable String boardId) {
+    public ModelMap updateBoard(@Valid@RequestBody UpdateBoard updateBoard, @PathVariable String boardId) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -77,12 +78,12 @@ public class BoardController {
         boardCollection.getActivities().add(activity);
         boardRepository.save(boardCollection);
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("massage","board updated");
+        modelMap.addAttribute("message","board updated");
         return modelMap;
     }
 
     @PatchMapping("/addMember/{boardId}")
-    public ModelMap addMember(@PathVariable String boardId, @RequestBody AddMember addmember) {
+    public ModelMap addMember(@PathVariable String boardId,@Valid @RequestBody AddMember addmember) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -106,7 +107,7 @@ public class BoardController {
             notification.add(notificationCollection);
             userRepository.save(user);
             ModelMap modelMap = new ModelMap();
-            modelMap.addAttribute("massage", addmember.getMemberUsername() + " added to board as member");
+            modelMap.addAttribute("message", addmember.getMemberUsername() + " added to board as member");
 
             return modelMap;
         } else
@@ -114,7 +115,7 @@ public class BoardController {
     }
 
     @PatchMapping("/removeMember/{boardId}")
-    public ModelMap removeMember(@PathVariable String boardId,@RequestBody AddMember member){
+    public ModelMap removeMember(@PathVariable String boardId,@Valid@RequestBody AddMember member){
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))throw new RuntimeException("Only board member can add members to board");
@@ -155,12 +156,12 @@ public class BoardController {
         }
         boardRepository.delete(boardRepository.findBoardCollectionById(boardId));
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("massage", "Board deleted successfully");
+        modelMap.addAttribute("message", "Board deleted successfully");
         return modelMap;
     }
 
     @PostMapping("addList/{boardId}")
-    public ModelMap addList(@PathVariable String boardId, @RequestBody ListDetailRequestModel model) {
+    public ModelMap addList(@PathVariable String boardId,@Valid @RequestBody ListDetailRequestModel model) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BoardCollection boardCollection = boardRepository.findBoardCollectionById(boardId);
         if (!boardCollection.getBoardMembers().contains(userName))
@@ -196,7 +197,7 @@ public class BoardController {
     }
 
     @PutMapping("addToFavourite/{boardId}")
-    public ModelMap bookmark(@PathVariable String boardId, @RequestBody BookmarkStatus bookmarkStatus) {
+    public ModelMap bookmark(@PathVariable String boardId, @Valid@RequestBody BookmarkStatus bookmarkStatus) {
         String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserCollection user = userRepository.findByUserName(userName);
         if (!user.getMyBoards().contains(boardId)) throw new RuntimeException("You are not member of this board");

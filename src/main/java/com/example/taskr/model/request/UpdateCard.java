@@ -1,6 +1,9 @@
 package com.example.taskr.model.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class UpdateCard {
+    @NotBlank(message = "card name can't be empty.")
     private String name;
     private String description;
     private String priority;

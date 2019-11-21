@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class UserCollection {
     @Id
     private String userName;
     @Length(max=25)
-    @NotEmpty(message = "name can't be empty.")
     private String fullName;
     @Email(message = "Enter valid Email of format 'username@gmail.com'.")
     @UniqueElements

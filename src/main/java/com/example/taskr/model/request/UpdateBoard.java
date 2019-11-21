@@ -1,6 +1,9 @@
 package com.example.taskr.model.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class UpdateBoard {
+    @NotBlank(message = "board name can't be empty")
     private String bName;
     private String description;
 

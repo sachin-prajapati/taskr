@@ -1,6 +1,9 @@
 package com.example.taskr.collections;
 
+import javax.validation.constraints.NotEmpty;
+
 public class ChecklistItem {
+    @NotEmpty(message = "name can't be empty.")
     private String name;
     private boolean completed;
 

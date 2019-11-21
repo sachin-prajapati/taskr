@@ -1,16 +1,22 @@
 package com.example.taskr.collections;
 
-import java.time.LocalDateTime;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
-
+@Document
 public class CardCollection {
 
     private int id;
+    @NotEmpty(message = "name can't be empty.")
     private String name;
     private String description;
     private List<ChecklistItem>checklist=new ArrayList<>();
-    private LocalDateTime dueDate;
+    private String dueDateShow;
+    private String dueDate;
+    private String dueTime;
+    private long reminderBefore;
     private String priority;
 
     public int getId() {
@@ -45,11 +51,11 @@ public class CardCollection {
         this.checklist = checklist;
     }
 
-    public LocalDateTime getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -61,4 +67,27 @@ public class CardCollection {
         this.priority = priority;
     }
 
+    public String getDueDateShow() {
+        return dueDateShow;
+    }
+
+    public void setDueDateShow(String dueDateShow) {
+        this.dueDateShow = dueDateShow;
+    }
+
+    public String getDueTime() {
+        return dueTime;
+    }
+
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
+    }
+
+    public long getReminderBefore() {
+        return reminderBefore;
+    }
+
+    public void setReminderBefore(long reminderBefore) {
+        this.reminderBefore = reminderBefore;
+    }
 }

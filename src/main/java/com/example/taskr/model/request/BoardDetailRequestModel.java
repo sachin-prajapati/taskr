@@ -1,7 +1,10 @@
 package com.example.taskr.model.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class BoardDetailRequestModel {
-private String bName;
+    @NotBlank(message = "Board name can't be empty")
+    private String bName;
 
     public String getbName() {
         return bName;

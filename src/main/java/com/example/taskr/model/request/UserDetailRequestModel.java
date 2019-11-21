@@ -1,11 +1,22 @@
 package com.example.taskr.model.request;
 
-public class UserDetailRequestModel {
+import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+public class UserDetailRequestModel {
+    @NotBlank(message = "userName name can't be empty.")
+    @UniqueElements(message = "This username is already in use.")
     private String userName;
+    @NotBlank(message = "fullname name can't be empty.")
     private String fullName;
+    @Email(message = "Enter valid email address.")
     private String email;
+    @Size(min = 7)
     private String password;
+    @Size(min = 7)
     private String confirmPassword;
 
     public String getUserName() {

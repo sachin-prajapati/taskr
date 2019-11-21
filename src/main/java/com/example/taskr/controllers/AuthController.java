@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -29,13 +30,13 @@ public class AuthController {
     @Autowired
     TokenGenerator tokenGenerator;
     @PostMapping("/signUp")
-    UserResponse createUser(@RequestBody UserDetailRequestModel userDetailRequestModel,HttpServletResponse res) throws IOException {
+    UserResponse createUser(@Valid @RequestBody UserDetailRequestModel userDetailRequestModel, HttpServletResponse res) throws IOException {
     if (userRepository.findByEmail(userDetailRequestModel.getEmail())!=null)
         throw new IOException("This email address is already taken. Please login to continue.");
-    if(userDetailRequestModel.getPassword().length()<7|| !userDetailRequestModel.getPassword().equals(userDetailRequestModel.getConfirmPassword()))
-        throw new IOException("Password should be greater than six character and should match confirmPassword ");
     if(userRepository.findByUserName(userDetailRequestModel.getUserName())!=null)
         throw new IOException("Username already exist.");
+    if(userDetailRequestModel.getPassword().length()<7|| !userDetailRequestModel.getPassword().equals(userDetailRequestModel.getConfirmPassword()))
+        throw new IOException("Password should be greater than six character and should match confirmPassword ");
     return userService.createUser(userDetailRequestModel);
     }
 
@@ -51,7 +52,7 @@ public class AuthController {
     }
 
     @PostMapping("/verifyEmail/{userName}")
-    ModelMap verifyUser(@RequestBody UserOtp userOtp, @PathVariable String userName ,HttpServletResponse res) throws IOException {
+    ModelMap verifyUser(@Valid@RequestBody UserOtp userOtp, @PathVariable String userName ,HttpServletResponse res) throws IOException {
         ModelMap modelMap=new ModelMap();
     UserCollection  user=userRepository.findByUserName(userName);
     LocalDateTime date =LocalDateTime.now();

@@ -3,6 +3,7 @@ package com.example.taskr.collections;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class BoardCollection {
     @Id
     private String id;
+    @NotEmpty(message = "name can't be empty.")
     private String bName;
     private String description;
     private String madeBy;

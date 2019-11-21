@@ -1,6 +1,9 @@
 package com.example.taskr.model.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class ListDetailRequestModel {
+    @NotBlank(message = "list name can't be empty")
     private String name;
 
     public String getName() {

@@ -23,7 +23,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("TaskR REST API")
-                .contact(new Contact("Sachin prajapati", "http://github.com/sachin-prajapati",
+                .contact(new Contact("Sachin prajapati", "https://github.com/sachin-prajapati",
                         "sachinkpprajapati@gmail.com"))
                 .version("1.0")
                 .build();

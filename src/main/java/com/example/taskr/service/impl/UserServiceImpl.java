@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
         return userResponse;
     }
 
-
     public void sendOtp(String userName)
     {
         UserCollection userCollection =userRepository.findByUserName(userName);
