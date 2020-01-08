@@ -52,7 +52,7 @@ public class AuthController {
     }
 
     @PostMapping("/verifyEmail/{userName}")
-    ModelMap verifyUser(@Valid@RequestBody UserOtp userOtp, @PathVariable String userName ,HttpServletResponse res) throws IOException {
+    ModelMap verifyUser(@RequestBody UserOtp userOtp, @PathVariable String userName ,HttpServletResponse res) throws IOException {
         ModelMap modelMap=new ModelMap();
     UserCollection  user=userRepository.findByUserName(userName);
     LocalDateTime date =LocalDateTime.now();
