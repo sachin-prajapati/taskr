@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable().exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint())
                 .and()
                 .authorizeRequests()
-                .antMatchers( "/","/api/auth/**","/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js",
+                .antMatchers( "/","/signup", "/login","/board/**","/verify/**","/user/**","/api/auth/**","/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js",
                         "/v2/api-docs","/swagger-resources/**", "/swagger-ui.html")
                 .permitAll()
                 .anyRequest().authenticated()
